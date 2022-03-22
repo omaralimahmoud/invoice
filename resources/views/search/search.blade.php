@@ -20,7 +20,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">كود المخزن </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">
+               <button class="  text-danger btn  btn-outline-dark"><a href="{{url('/categorys')}}">الرجوع الى صفحه كود المخزن</a></button>
+
                 </span>
             </div>
         </div>
@@ -32,7 +33,7 @@
        <div class="row">
        <div class="col-md-6">
         <div class=" d-flex justify-content-center my-1">
-             <input  name="search" type="text" placeholder="بحث" class=" text-warning  form-control ">
+             <input  name="search" type="text" placeholder="بحث" value="{{$search}}" class=" text-warning  form-control ">
              <input type="submit" class="btn  btn-outline-primary mr-1" value="بحث">
          </div>
        </div>
@@ -84,7 +85,7 @@
                                 @foreach ($cats as $cat)
                                 <tr>
 
-                                   <td>{{$loop->iteration}}</td>
+                                    <td>{{$loop->iteration}}</td>
                                    <td>{{$cat->storeCode}}</td>
                                    <td>{{$cat->StoreName}}</td>
                                    <td>{{$cat->Notes}}</td>
@@ -93,7 +94,7 @@
                                        <button  type="button" class=" btn  btn-info edit-btn" data-id="{{$cat->id}}" data-storeCode="{{$cat->storeCode}}" data-StoreName="{{$cat->StoreName}}" data-Notes="{{$cat->Notes}}" data-target="#edit-model" data-toggle="modal">
                                         <i class="fas fa-edit"></i>
                                        </button>
-                                       <a href="{{url("/categorys/delete/$cat->id")}}"  class=" btn  btn-danger btn">
+                                       <a href="{{url("/categorys/delete/$cat->id")}}" class=" btn  btn-danger">
                                         <i class="far fa-trash-alt"></i>
                                        </a>
 
@@ -106,9 +107,7 @@
                             </tbody>
 
                         </table>
-                        <div class="d-flex my-3 justify-content-center">
-                            {{$cats->links()}}
-                        </div>
+
 
                     </div>
                 </div>
@@ -298,8 +297,7 @@
 
         //console.log(id,storeCode,StoreName,Notes)
     })
-
-  
 </script>
 @endsection
 
+//////////////////////////////

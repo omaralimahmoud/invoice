@@ -11,12 +11,10 @@ class HomeController extends Controller
   {
       return view('home.index');
   }
-  public function show()
-  {
-      return view('storehouse.modals');
-  }
-  public function show2()
-  {
-      return view('cat.categorys');
-  }
+
+
+
+
+
+ 
 }

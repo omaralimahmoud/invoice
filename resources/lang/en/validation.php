@@ -81,9 +81,9 @@ return [
         'array' => 'The :attribute must not have more than :value items.',
     ],
     'max' => [
-        'numeric' => 'The :attribute must not be greater than :max.',
+        'numeric' => ':attribute يجب الا يكون اكبر من 1000000 ',
         'file' => 'The :attribute must not be greater than :max kilobytes.',
-        'string' => 'The :attribute must not be greater than :max characters.',
+        'string' => ':attribute يجب الايزيد عن 255 حرف',
         'array' => 'The :attribute must not have more than :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
@@ -148,18 +148,84 @@ return [
             'unique' => 'الايميل موجود مسبقا ',
         ],
 
+        'item_id.*' => [
+            'required' => ':attribute حقل الصنف مطلوب',
+        ],
+
 
 
 
         'password' => [
             'required' => 'كلمه السر مطلوبه  ',
-            'confirmed'=>'كلمه السر  غير متوافقه    ',
-            'min' => [
+            'confirmed' => 'كلمه السر  غير متوافقه    ',
+
+        ],
 
 
-                'string' => 'كلمه السر يجب ان تتكون من 8 احرف',
+        'storeCode' => [
+            'required' => ' كود المخزن مطلوب ',
+            'unique' => ' كود المخزن موجود مسبقا',
 
-            ],
+        ],
+        'StoreName' => [
+            'required' => '  اسم المخزن مطلوب ',
+
+
+        ],
+        'SupplierCode' => [
+            'required' => ' كود المورد مطلوب ',
+            'unique' => ' كود المخزن موجود مسبقا',
+
+        ],
+        'SupplierName' => [
+            'required' => '  اسم المورد مطلوب ',
+        ],
+
+        'itemProductCode' => [
+            'required' => '    كود الصنف مطلوب ',
+            'unique' => ' كود  الصنف موجود مسبقا',
+        ],
+
+        'itemProductName' => [
+            'required' => '     اسم الصنف مطلوب ',
+
+        ],
+
+
+        'itemUnitProductCode' => [
+            'required' => '    كود وحده الصنف  مطلوب ',
+            'unique' => '   كود وحده الصنف موجود مسبقا',
+        ],
+
+
+
+        'itemOnlyProduct' => [
+            'required' => '    وحده اصنف مطلوبه',
+
+        ],
+        'purchasedDate' => [
+            'required' => ' تاريخ الشراء مطلوب',
+
+        ],
+        'quantity' => [
+            'required' => ' الكميه مطلوبه',
+
+        ],
+        'PurchasingBrice' => [
+            'required' => '  سعر الشراء مطلوب',
+
+        ],
+        'customerNameInvoice' => [
+            'required' => '    اسم العميل مطلوب',
+
+        ],
+        'CustomerPhoneNumberInvoice' => [
+            'required' => '     رقم تلفون العميل مطلوب',
+
+        ],
+        'netInvoice' => [
+            'required' => '     الصافي   مطلوب',
+
         ],
     ],
 
@@ -174,6 +240,27 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'storeCode' => 'كود المخزن',
+        'StoreName' => 'اسم المخزن',
+        'password' => 'كلمه السر',
+        'SupplierCode' => 'كود المورد ',
+        'SupplierName' => 'اسم المورد',
+        'itemProductCode' => 'كود الصنف',
+        'itemProductName' => 'اسم الصنف',
+        'itemUnitProductCode' => 'كود وحده الصنف',
+        'itemOnlyProduct' => 'وحده الصنف',
+        'openingBalance' => 'الرصيد الافتاتحي',
+        'purchasedDate' => 'تاريخ الشراء',
+        'quantity' => 'الكميه',
+        'PurchasingBrice' => 'سعر الشراء',
+        'sellingBrice' => 'سعر البيع',
+        'finalBriceEnd' => 'السعر النهائي',
+        'storehouseNotes' => 'ملاحظات',
+        'customerNameInvoice' => 'اسم العميل ',
+        'CustomerPhoneNumberInvoice' => 'رقم تلفون العميل',
+        'netInvoice' => 'الصافي ',
+        'quantityInvoice' => 'الكميه ',
+    ],
 
 ];

@@ -4,7 +4,7 @@
 Project        :   VALEX - HTML5 Bootstrap Admin Template
 Version        :   V.1
 Create Date    :   09/05/20
-Copyright      :   Spruko Technologies Private Limited 
+Copyright      :   Spruko Technologies Private Limited
 Author         :   SprukoSoft
 Author URL     :   https://themeforest.net/user/sprukosoft
 Support	       :   support@spruko.com
@@ -6400,7 +6400,7 @@ textarea.form-control.is-invalid, textarea.form-control.parsley-error {
   .table thead th, .table thead td {
     color: #37374e;
     font-weight: 700;
-    font-size: 11px;
+    /* font-size: 11px; */
     letter-spacing: .5px;
     text-transform: uppercase;
     border-bottom-width: 1px;
