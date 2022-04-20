@@ -192,7 +192,7 @@
 
 
                         <div class="col-md-6">
-                            <label for="" class=" text-primary "> الرصيد الافتتحاي </label>
+                            <label for="" class=" text-primary "> الرصيد الافتتاحي </label>
                             @error('openingBalance')
                                 <div class="alert alert-danger">
                                     <p>{{ $message }}</p>
@@ -247,13 +247,14 @@
                             <div class="col-md-6">
                                 <label for="" class="text-primary">اسم الصنف</label>
                                 <input type="text" class=" form-control" id="itemName">
-                            </div>
-                            <div class="col-12 d-none" id="itemsSearchMenu">
-                                <div class="form-group">
-                                    <select class="form-control" id="itemsSearchSelector">
-                                    </select>
+                                <div class="col-12 d-none" id="itemsSearchMenu">
+                                    <div class="form-group">
+                                        <select class="form-control" id="itemsSearchSelector">
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="col-12 bg-danger text-center font-weight-bolder" id="ajaxItemErrors"></div>
                             <div>
                                 <input type="hidden" name="cat_id" id="catId">
@@ -397,7 +398,7 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="number" id="edit-form-PurchasingBrice" name="PurchasingBrice"
+                                <input type="number" step="any"  id="edit-form-PurchasingBrice" name="PurchasingBrice"
                                     class=" form-control">
                             </div>
 
@@ -408,7 +409,7 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="text" id="edit-form-sellingBrice" name="sellingBrice" class=" form-control">
+                                <input type="text" step="any"  id="edit-form-sellingBrice" name="sellingBrice" class=" form-control">
                             </div>
                             <div class="col-md-6">
                                 <label for="" class=" text-primary">السعر النهائي</label>
@@ -417,7 +418,7 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="text" id="edit-form-finalBriceEnd" name="finalBriceEnd"
+                                <input type="number" step="any"    id="edit-form-finalBriceEnd" name="finalBriceEnd"
                                     class=" form-control">
                             </div>
 

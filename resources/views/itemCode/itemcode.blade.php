@@ -163,13 +163,14 @@
                                 <label for="" class=" text-primary"> اسم المخزن </label>
                                 <input    type="text" class=" form-control" id="catName"> {{-- this name is هو نفس الاسم  cat --}}
                                 <input type="hidden" name="cat_id" id="cat_id">
-                            </div>
-                            <div class="col-12 d-none" id="CatSearchMenu">
-                                <div class="form-group">
-                                    <select class="form-control" id="CatSearchSelector">
-                                    </select>
+                                <div class="col-12 d-none" id="CatSearchMenu">
+                                    <div class="form-group">
+                                        <select class="form-control" id="CatSearchSelector">
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
+
 
                             <div class="col-12 bg-danger text-center font-weight-bolder" id="ajaxCatErrors"></div>
 

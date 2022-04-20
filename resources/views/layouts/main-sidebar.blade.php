@@ -3,8 +3,8 @@
 		<aside class="app-sidebar sidebar-scroll">
 			<div class="main-sidebar-header active">
 	          <h4 class=" text-primary"> جبريل والافندي  جروب</h4>
-				<a class="logo-icon mobile-logo icon-light active" href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="logo-icon" alt="logo"></a>
-				<a class="logo-icon mobile-logo icon-dark active" href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/favicon-white.png')}}" class="logo-icon dark-theme" alt="logo"></a>
+				{{-- <a class="logo-icon mobile-logo icon-light active" href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="logo-icon" alt="logo"></a> --}}
+				{{-- <a class="logo-icon mobile-logo icon-dark active" href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/favicon-white.png')}}" class="logo-icon dark-theme" alt="logo"></a> --}}
 			</div>
 			<div class="main-sidemenu">
 				<div class="app-sidebar__user clearfix">
@@ -79,7 +79,7 @@
 					</li>
                     @endif
 
-				
+
 
 
 				</ul>

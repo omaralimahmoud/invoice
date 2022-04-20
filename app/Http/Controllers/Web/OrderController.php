@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $data['orders'] = Order::paginate(3);
+        $data['orders'] = Order::paginate(10);
         // $data['customers']= Customer::all();
         return view('sales.saless')->with($data);
     }

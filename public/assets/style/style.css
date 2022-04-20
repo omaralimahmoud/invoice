@@ -1,12 +1,15 @@
 .itemCode
 {
-    width: 200px;
-    
-}
+    width: 120px;
 
+}
+*
+ {
+     font-size: 20px;
+ }
 .itemName
 {
- width: 300px;
+ width: 350px;
 
 }
 
@@ -14,7 +17,14 @@
 .table {
     text-align: center;
     box-sizing: border-box;
+
     overflow: auto;
     color: #000;
+}
+
+@media print {
+.no-print{
+    display: none;
+}
 }
 

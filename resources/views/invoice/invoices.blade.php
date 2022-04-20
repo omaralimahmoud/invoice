@@ -44,15 +44,9 @@
 @section('content')
     <!-- row -->
     @include('inc.masseg')
-    <form action="{{ url('/invoice/store') }}" method="post" id="printJS-form">
+    <form action="{{ url('/invoice/store') }}" method="post" id="printJS-form"   >
         @csrf
-        @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible">
-                <strong>
-                    {!! implode('<br/>', $errors->all('<span>:message</span>')) !!}
-                </strong>
-            </div>
-        @endif
+
         @if (session()->has('error'))
             <div class="alert alert-danger alert-dismissible">
                 <strong>
@@ -64,7 +58,7 @@
 
             <div class="col-md-3 my-3">
                 <label for="">تاريخ الفاتوره</label>
-                <input class="form-control text-center" placeholder="تاريخ الفاتوره" style="direction: ltr" readonly
+                <input  class="form-control text-center" placeholder="تاريخ الفاتوره" style="direction: ltr" readonly
                     type="text" value="{{ now()->toDateTimeString() }}">
             </div>
             <div class="col-md-3 my-3">
@@ -74,11 +68,16 @@
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
-                <select name="invoiceType" id="" class="form-control">
-                    <option value="2">نقدي</option>
-                    <option value="1">اجل</option>
 
-                </select>
+                        <select  name="invoiceType" id="" class="form-control">
+                            <option   value="2">نقدي</option>
+                            <option   value="1">اجل</option>
+
+                        </select>
+
+
+
+
             </div>
             <div class="col-md-3 my-3">
                 <label for="">رقم الفاتوره</label>
@@ -88,7 +87,7 @@
                     </div>
                 @enderror
 
-                <input value="{{ $lastId }}" readonly class="form-control" placeholder="رقم الفاتوره" type="number"
+                <input   value="{{ $lastId }}" readonly class="form-control" placeholder="رقم الفاتوره" type="number"
                     name="numberInvoice">
             </div>
             <div class="col-md-3 my-3">
@@ -162,9 +161,9 @@
                                 <thead>
                                     <tr>
                                         <th class="wd-15p border-bottom-0">مسلسل</th>
-                                        <th class="wd-15p border-bottom-0">كود الصنف</th>
+                                        <th class="wd-15p border-bottom-0 ">كود الصنف</th>
                                         <th class="wd-15p border-bottom-0"> اسم الصنف</th>
-                                        <th class="wd-15p border-bottom-0"> كود وحده الصنف </th>
+                                        <th class="wd-15p border-bottom-0 prt"> كود وحده الصنف </th>
                                         <th class="wd-15p border-bottom-0"> وحده الصنف</th>
                                         <th class="wd-20p border-bottom-0"> الكميه </th>
                                         <th class="wd-15p border-bottom-0"> سعر بيع الوحده </th>
@@ -198,10 +197,10 @@
                                     <input type="number" step="any" id="discountValueInvoice" class="form-control"
                                         placeholder="قيمه الخصم">
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="">حذف الكسور</label>
-                                    <input type="number" step="any" onkeyup="removeDecimalAll()" id="removeDecimal"
-                                        class="form-control" name="removeDecimal" placeholder="حذف الكسور">
+                                <div class="col-md-3 " >
+                                    {{-- <label for="">حذف الكسور</label> --}}
+                                    <input   type="number" step="any" onkeyup="removeDecimalAll()" id="removeDecimal"
+                                        class="form-control my-4" name="removeDecimal" >
                                 </div>
 
                                 <div class="col-md-3">
@@ -224,9 +223,9 @@
 
                             </div>
 
-                            <button type="submit" class="btn btn-primary float-left m-3">تاكيد</button>
-                            <button type="button" class="btn btn-danger float-left m-3"
-                                onclick="printJS('printJS-form', 'html')">
+                            <button  type="submit" class="btn btn-primary float-left m-3 prt">تاكيد</button>
+                            <button  type="button" class="btn btn-danger float-left m-3 prt"
+                                onclick="printJS({ printable: 'printJS-form', type: 'html',style: '.prt { display: none; }' })">
                                 طباعه
                             </button>
 
@@ -299,12 +298,12 @@
                         <td id="rowId">${i}</td>
                         <input type="hidden" required id="itemId-${i}" name="item_id[]">
                             <div class="col-md-3">
-          <td><input required onkeyup="getCod(${i})" type="number" id="itemCode-${i}" class="itemCode"
+          <td ><input  required onkeyup="getCod(${i})" type="number" id="itemCode-${i}" class="itemCode  "
                   placeholder="كود الصنف"></td>
       </div>
 
       <div class="col-md-3">
-          <td><input required onkeyup="iputsearch(${i})" type="text" id="itemName-${i}" class="itemName "
+          <td><input required onkeyup="iputsearch(${i})" type="text" id="itemName-${i}" class="itemName   "
                   placeholder="اسم الصنف">
 
                   <div class=" d-none" id="itemsSearchMenu-${i}">
@@ -316,13 +315,13 @@
                   </td>
       </div>
       <div class="col-md-3">
-          <td><input type="number" required id="itemUnitProductCode-${i}"  class="itemCode "
+          <td class="prt"><input type="number" required id="itemUnitProductCode-${i}"  class="itemCode  "
                   placeholder="كود وحده الصنف"></td>
 
       </div>
 
       <div class="col-md-3">
-          <td><input required   type="text" id="itemOnlyProduct-${i}"  class="itemName "
+          <td><input required   type="text" id="itemOnlyProduct-${i}"  class="itemCode "
                   placeholder="وحده الصنف"></td>
 
       </div>
@@ -333,7 +332,7 @@
           <td><input type="number" step="any" required onkeyup="getTotal(${i})"  id="unitSaleBriceInvoice-${i}"    name="unitSaleBriceInvoice[]" class="itemCode" placeholder="سعر بيع الوحده"></td>
       </div>
       <div class="col-md-3">
-          <td><input type="number" step="any" required id="totalInvoice-${i}" class="itemName " placeholder="الاجمالي">
+          <td><input type="number" step="any" required id="totalInvoice-${i}" class="itemCode " placeholder="الاجمالي">
           </td>
       </div>
       <div class="col-md-3">
@@ -386,13 +385,13 @@
                   </td>
       </div>
       <div class="col-md-3">
-          <td><input type="number" required id="itemUnitProductCode-${x}"  class="itemCode "
+          <td class="prt"><input type="number" required id="itemUnitProductCode-${x}"  class="itemCode "
                   placeholder="كود وحده الصنف"></td>
 
       </div>
 
       <div class="col-md-3">
-          <td><input type="text" required id="itemOnlyProduct-${x}"  class="itemName "
+          <td><input type="text" required id="itemOnlyProduct-${x}"  class="itemCode "
                   placeholder="وحده الصنف"></td>
 
       </div>
@@ -403,11 +402,11 @@
           <td><input type="number" required onkeyup="getTotal(${x})"  id="unitSaleBriceInvoice-${x}"    name="unitSaleBriceInvoice[]" class="itemCode" placeholder="سعر بيع الوحده"></td>
       </div>
       <div class="col-md-3">
-          <td><input type="number" required id="totalInvoice-${x}" class="itemName " placeholder="الاجمالي">
+          <td><input type="number" required id="totalInvoice-${x}" class="itemCode " placeholder="الاجمالي">
           </td>
       </div>
       <div class="col-md-3">
-          <td><input type="text" id="notesInvoice-${x}" name="notesInvoice[]" class="itemName" placeholder="ملاحظات">
+          <td class="prt"><input type="text" id="notesInvoice-${x}" name="notesInvoice[]" class="itemName" placeholder="ملاحظات">
           </td>
       </div>
   </tr>
@@ -449,7 +448,8 @@
             let unitSaleBriceInvoice = $(`#unitSaleBriceInvoice-${i}`).val();
             let totalInvoice = $(`#totalInvoice-${i}`);
             total = quantityInvoice * unitSaleBriceInvoice;
-            totalInvoice.val(total);
+            console.log(total);
+            totalInvoice.val(total.toFixed(2));
             subTotal();
         }
 
@@ -461,7 +461,7 @@
                     totalInvoice = $(`#totalInvoice-${i}`).val();
                     arr.push(Number(totalInvoice))
                 } else {
-                    console.log('not a Number');
+                    // console.log('not a Number');
                 }
 
                 var sum = arr.reduce(function(x, y) {
@@ -470,7 +470,7 @@
                 totalAllInvoice = $('#totalAllInvoice').val(sum)
                 $(`#netInvoice`).val(sum);
 
-                console.log(sum);
+            //    console.log(sum);
             }
 
 
@@ -485,8 +485,8 @@
             let totalDiscount = totalAlls - (totalAlls * discountBercentageInvoice)
 
 
-            console.log(discountBercentageInvoice)
-            console.log(totalAlls)
+       //     console.log(discountBercentageInvoice)
+        //    console.log(totalAlls)
 
             $(`#discountValueInvoice`).val(totalDiscount)
             $(`#netInvoice`).val(totalDiscount);
@@ -501,9 +501,9 @@
             let deleteRemoveDecimal = discountValueInvoice - removeDecimal
 
             $(`#netInvoice`).val(deleteRemoveDecimal);
-            console.log(discountValueInvoice, 'done')
-            console.log(removeDecimal, 'done2')
-            console.log(deleteRemoveDecimal, 'dd')
+        //    console.log(discountValueInvoice, 'done')
+         //   console.log(removeDecimal, 'done2')
+         //   console.log(deleteRemoveDecimal, 'dd')
         }
 
 

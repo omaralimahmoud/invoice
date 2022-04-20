@@ -11,7 +11,10 @@
     <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ URL::asset('assets/css_print/print.min.css') }}">
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ URL::asset('assets/style/style.css') }}">
+
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -29,152 +32,227 @@
 @section('content')
     <!-- row -->
 
-    <!-- /row -->
-    <div class="row row-sm">
-        <!--start table-->
-        <div class="col-xl-12">
-            <div class="card">
-                <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="card-title mg-b-0">البيانات </h4>
+    <h3>بيانات الفاتوره</h3>
+    <div class="row ">
 
-
-                    </div>
-                    {{-- <div class="  d-flex justify-content-between float-left"> --}}
-                        {{-- <button  type="button"><a href="{{url("/sales/orderDetails/update/$order->id")}}" class=" btn btn-info text-white edit-btn  d-none" > تعديل</a></button> --}}
-                    {{-- </div> --}}
-
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table text-md-nowrap text-center" id="example1">
-                            <thead>
-                                <tr>
-                                    <th class="wd-15p border-bottom-0"> مسلسل</th>
-
-                                    <th class="wd-15p border-bottom-0">نوع الفاتوره</th>
-
-                                    <th class="wd-20p border-bottom-0"> رقم الفاتوره </th>
-                                    <th class="wd-15p border-bottom-0"> نوع العميل </th>
-                                    <th class="wd-10p border-bottom-0">كود العميل</th>
-                                    <th class="wd-10p border-bottom-0"> اسم العميل</th>
-                                    <th class="wd-10p border-bottom-0"> رقم تلفون العميل</th>
-                                    <th class="wd-10p border-bottom-0"> اسم المحاسب </th>
-                                    <th class="wd-10p border-bottom-0"> نسبه الخصم</th>
-                                    <th class="wd-10p border-bottom-0"> الصافي </th>
-                                    <th class="wd-10p border-bottom-0"> حذف الكسور </th>
-                                    <th class="wd-10p border-bottom-0"> التاريخ </th>
-
-
-
-
-
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{ $order->id }}</td>
-                                    <td>
-                                        @if ($order->invoiceType == 1)
-                                            اجل
-                                        @elseif($order->invoiceType == 2)
-                                            نقدي
-                                        @endif
-                                    </td>
-                                    <td>{{ $order->numberInvoice }}</td>
-                                    <td>
-                                        @if ($order->customerType == 1)
-                                            اشخاص
-                                        @elseif($order->customerType == 2)
-                                            شركات
-                                        @endif
-                                    </td>
-                                    <td>{{ $order->customerCodeInvoice }}</td>
-                                    <td>{{ $order->customerNameInvoice }}</td>
-                                    <td>{{ $order->CustomerPhoneNumberInvoice }}</td>
-                                    <td>{{ $order->user->name }}</td>
-                                    <td>{{ $order->discountBercentageInvoice }}</td>
-                                    <td>{{ $order->netInvoice }}</td>
-                                    <td>{{$order->removeDecimal}}</td>
-                                    <td>{{ $order->created_at }}</td>
-
-                                </tr>
-
-
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-            </div>
+        <div class=" col-md-2 my-2">
+            <label for="">مسلسل</label>
+        <input type="text" class=" form-control  " readonly value="{{ $order->id }}">
         </div>
-        <!--end table-->
+        <div class=" col-md-2 my-2">
+            <label for="">نوع الفاتوره</label>
+        <input type="text" class=" form-control" readonly value=" @if ($order->invoiceType == 1)
+        اجل
+    @elseif($order->invoiceType == 2)
+        نقدي
+    @endif">
+        </div>
+        <div class=" col-md-2 my-2">
+            <label for="">رقم الفاتوره</label>
+        <input type="text" class=" form-control" readonly value=" {{$order->numberInvoice}}">
+        </div>
+        <div class=" col-md-2 my-2">
+            <label for="">نوع العميل</label>
+        <input type="text" class=" form-control" readonly value="  @if ($order->customerType == 1)
+        اشخاص
+    @elseif($order->customerType == 2)
+        شركات
+    @endif">
+        </div>
+        <div class=" col-md-2 my-2">
+            <label for="">كود العميل</label>
+        <input type="text" class=" form-control" readonly value="{{ $order->customerCodeInvoice }}">
+        </div>
+        <div class=" col-md-2 my-2">
+            <label for="">اسم العميل</label>
+        <input type="text" class=" form-control" readonly value="{{ $order->customerNameInvoice }}">
+        </div>
+        <div class=" col-md-2 my-2">
+            <label for="">رقم تلفون العميل	</label>
+        <input type="text" class=" form-control" readonly value="{{ $order->CustomerPhoneNumberInvoice }}">
+        </div>
+        <div class=" col-md-2 my-2">
+            <label for="">اسم المحاسب	</label>
+        <input type="text" class=" form-control" readonly  value="{{ $order->user->name }}">
+        </div>
+        <div class=" col-md-2 my-2">
+            <label for="">نسبه الخصم	</label>
+        <input type="text" class=" form-control" readonly value="{{ $order->discountBercentageInvoice }}">
+        </div>
+        <div class=" col-md-2 my-3">
+            <label for="" class="no-print">حذف الكسور	</label>
+        <input type="text" class=" form-control" readonly value="{{ $order->removeDecimal }}">
+        </div>
+        <div class=" col-md-2 my-2">
+           <label for="">الصافي</label>
+        <input type="text" class=" form-control" readonly value="{{ $order->netInvoice }}">
+        </div>
+        <div class=" col-md-2 my-2">
+            <label for="">التاريخ</label>
+        <input type="text" class=" form-control" readonly value="{{ $order->created_at }}">
+        </div>
     </div>
-    <div class="row row-sm">
-        <!--start table-->
-        <div class="col-xl-12">
-            <div class="card">
-                <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="card-title mg-b-0"> التفاصيل </h4>
 
+
+
+
+
+    <!-- /row -->
+    <form method="POST" action="" id="printJS-form"    style="direction: rtl" >
+        @csrf
+        <div class="row row-sm">
+            <!--start table-->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header pb-0 no-print d-none">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title mg-b-0 ">البيانات </h4>
+
+
+                        </div>
+                        {{-- <div class="  d-flex justify-content-between float-left"> --}}
+                        {{-- <button  type="button"><a href="{{url("/sales/orderDetails/update/$order->id")}}" class=" btn btn-info text-white edit-btn  d-none" > تعديل</a></button> --}}
+                        {{-- </div> --}}
 
                     </div>
-
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table text-md-nowrap text-center" id="example1">
-                            <thead>
-                                <tr>
-                                    <th class="wd-15p border-bottom-0"> مسلسل</th>
-
-                                    <th class="wd-15p border-bottom-0">كود الصنف </th>
-                                    <th class="wd-15p border-bottom-0">اسم الصنف </th>
-
-                                    <th class="wd-20p border-bottom-0"> كود وحده الصنف </th>
-                                    <th class="wd-15p border-bottom-0"> وحده الصنف </th>
-                                    <th class="wd-10p border-bottom-0">الكميه </th>
-                                    <th class="wd-10p border-bottom-0"> سعر بيع الوحده </th>
-                                    <th class="wd-10p border-bottom-0"> ملاحظات </th>
-                                    <th class="wd-10p border-bottom-0"> التاريخ </th>
-
-
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($orderDetails as $orderDetail)
+                    <div class="card-body no-print  d-none">
+                        <div class="table-responsive">
+                            <table class="table text-md-nowrap text-center grob " id="example1">
+                                <thead >
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $orderDetail->item->itemProductCode }}</td>
-                                        <td>{{ $orderDetail->item->itemProductName }}</td>
-                                        <td>{{ $orderDetail->item->itemUnitProductCode }}</td>
-                                        <td>{{ $orderDetail->item->itemOnlyProduct }}</td>
-                                        <td>{{ $orderDetail->quantityInvoice }}</td>
-                                        <td>{{ $orderDetail->unitSaleBriceInvoice }}</td>
-                                        <td>{{ $orderDetail->notesInvoice }}</td>
+                                        <th class="wd-15p border-bottom-0"> مسلسل</th>
 
-                                        <td>{{ $orderDetail->created_at }}</td>
+                                        <th class="wd-15p border-bottom-0">نوع الفاتوره</th>
+
+                                        <th class="wd-20p border-bottom-0"> رقم الفاتوره </th>
+                                        <th class="wd-15p border-bottom-0"> نوع العميل </th>
+                                        <th class="wd-10p border-bottom-0">كود العميل</th>
+                                        <th class="wd-10p border-bottom-0"> اسم العميل</th>
+                                        <th class="wd-10p border-bottom-0"> رقم تلفون العميل</th>
+                                        <th class="wd-10p border-bottom-0"> اسم المحاسب </th>
+                                        <th class="wd-10p border-bottom-0 "> نسبه الخصم</th>
+                                        <th class="wd-10p border-bottom-0"> الصافي </th>
+                                        <th class="wd-10p border-bottom-0"> حذف الكسور </th>
+                                        <th class="wd-10p border-bottom-0"> التاريخ </th>
+
+
+
+
+
 
                                     </tr>
-                                @endforeach
+                                </thead>
+                                <tbody >
+                                    <tr>
+                                        <td>{{ $order->id }}</td>
+                                        <td>
+                                            @if ($order->invoiceType == 1)
+                                                اجل
+                                            @elseif($order->invoiceType == 2)
+                                                نقدي
+                                            @endif
+                                        </td>
+                                        <td>{{ $order->numberInvoice }}</td>
+                                        <td>
+                                            @if ($order->customerType == 1)
+                                                اشخاص
+                                            @elseif($order->customerType == 2)
+                                                شركات
+                                            @endif
+                                        </td>
+                                        <td>{{ $order->customerCodeInvoice }}</td>
+                                        <td>{{ $order->customerNameInvoice }}</td>
+                                        <td>{{ $order->CustomerPhoneNumberInvoice }}</td>
+                                        <td>{{ $order->user->name }}</td>
+                                        <td>{{ $order->discountBercentageInvoice }}</td>
+                                        <td>{{ $order->netInvoice }}</td>
+                                        <td>{{ $order->removeDecimal }}</td>
+                                        <td>{{ $order->created_at }}</td>
+
+                                    </tr>
 
 
+                                </tbody>
+                            </table>
 
-
-
-
-                            </tbody>
-                        </table>
-                        <a href="{{ url()->previous() }}" class=" btn btn-info">الرجوع الى الخلف</a>
-
+                        </div>
                     </div>
                 </div>
             </div>
+            <!--end table-->
         </div>
-        <!--end table-->
+        <div class="row row-sm">
+            <!--start table-->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <div class="d-flex justify-content-between">
+                            <h4 class="card-title mg-b-0"> التفاصيل </h4>
+
+
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table text-md-nowrap text-center" id="example1">
+                                <thead class="pad">
+                                    <tr>
+                                        <th class="wd-15p border-bottom-0"> مسلسل</th>
+
+                                        <th class="wd-15p border-bottom-0">كود الصنف </th>
+                                        <th class="wd-15p border-bottom-0">اسم الصنف </th>
+
+                                        <th class="wd-20p border-bottom-0 prt"> كود وحده الصنف </th>
+                                        <th class="wd-15p border-bottom-0"> وحده الصنف </th>
+                                        <th class="wd-10p border-bottom-0">الكميه </th>
+                                        <th class="wd-10p border-bottom-0"> سعر بيع الوحده </th>
+                                        <th class="wd-10p border-bottom-0"> ملاحظات </th>
+
+
+
+
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    @foreach ($orderDetails as $orderDetail)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $orderDetail->item->itemProductCode }}</td>
+                                            <td>{{ $orderDetail->item->itemProductName }}</td>
+                                            <td >{{ $orderDetail->item->itemUnitProductCode }}</td>
+                                            <td>{{ $orderDetail->item->itemOnlyProduct }}</td>
+                                            <td>{{ $orderDetail->quantityInvoice }}</td>
+                                            <td>{{ $orderDetail->unitSaleBriceInvoice }}</td>
+                                            <td>{{ $orderDetail->notesInvoice }}</td>
+
+
+
+                                        </tr>
+                                    @endforeach
+
+
+
+
+
+
+                                </tbody>
+                            </table>
+
+                            <a href="{{ url()->previous() }}" class=" btn btn-info no-print">الرجوع الى الخلف</a>
+                            <a href="{{ url('/invoice') }}" class=" btn btn-secondary no-print">الرجوع الى الفاتوره</a>
+                            <button  type="button" class="btn btn-danger float-left m-3  no-print"
+                            onclick="window.print()">
+                            طباعه
+                        </button>
+
+
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!--end table-->
     </div>
     <!-- row closed -->
     </div>
@@ -219,9 +297,9 @@
     <script src="{{ URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js_print/print.min.js') }}"></script>
     <!--Internal  Datatable js -->
 @endsection
 
 @section('script')
-
 @endsection
