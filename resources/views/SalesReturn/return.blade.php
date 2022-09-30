@@ -11,7 +11,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الفاتوره</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0 "></span>
+                <h4 class="content-title mb-0 my-auto">فاتوره المرتجع</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0 "></span>
             </div>
         </div>
 
@@ -44,7 +44,7 @@
 @section('content')
     <!-- row -->
     @include('inc.masseg')
-    <form action="{{ url('/invoice/store') }}" method="post" id="printJS-form"   >
+    <form action="{{ url('/return/store') }}" method="post" id="printJS-form"   >
         @csrf
 
         @if (session()->has('error'))
@@ -63,13 +63,13 @@
             </div>
             <div class="col-md-3 my-3">
                 <label for="">نوع الفاتوره</label>
-                @error('invoiceType')
+                @error('returnInvoiceType')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
 
-                        <select  name="invoiceType" id="" class="form-control">
+                        <select  name="returnInvoiceType" id="" class="form-control">
                             <option   value="2">نقدي</option>
                             <option   value="1">اجل</option>
 
@@ -81,23 +81,23 @@
             </div>
             <div class="col-md-3 my-3">
                 <label for="">رقم الفاتوره</label>
-                @error('numberInvoice')
+                @error('returnNumberInvoice')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
 
-                <input   value="{{ $lastId }}" readonly class="form-control" placeholder="رقم الفاتوره" type="number"
-                    name="numberInvoice">
+                <input   value="{{ $lastId }}"   readonly class="form-control" placeholder="رقم الفاتوره" type="number"
+                    name="returnNumberInvoice">
             </div>
             <div class="col-md-3 my-3">
                 <label for=""> نوع العميل </label>
-                @error('customerType')
+                @error('returnCustomerType')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
-                <select name="customerType" id="" class="form-control">
+                <select name="returnCustomerType" id="" class="form-control">
                     <option value="1">اشخاص</option>
                     <option value="2">شركات</option>
                 </select>
@@ -106,22 +106,22 @@
 
             <div class="col-md-4 my-3">
                 <label for="">كود العميل</label>
-                @error('customerCodeInvoice')
+                @error('returnCustomerCodeInvoice')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
-                <input class="form-control" value="{{ $lastId }}" readonly placeholder="كود العميل" type="number"
-                    name="customerCodeInvoice" id="customerCodeInvoice">
+                <input  value="{{ $lastId }}" class="form-control"  readonly placeholder="كود العميل" type="number"
+                    name="returnCustomerCodeInvoice" id="customerCodeInvoice">
             </div>
             <div class="col-md-4 my-3">
                 <label for="">اسم العميل </label>
-                @error('customerNameInvoice')
+                @error('returnCustomerNameInvoice')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
-                <input class="form-control" type="text" required placeholder="اسم العميل" name="customerNameInvoice"
+                <input class="form-control" type="text" required placeholder="اسم العميل" name="returnCustomerNameInvoice"
                     id="customerNameInvoice">
                 <div class=" d-none  " id="customerSearchMenu">
                     <div class="form-group">
@@ -133,12 +133,12 @@
 
             <div class="col-md-4 my-3">
                 <label for="">رقم تلفون العميل </label>
-                @error('CustomerPhoneNumberInvoice')
+                @error('returnCustomerPhoneNumberInvoice')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
-                <input class="form-control" placeholder="رقم تلفون العميل" required type="number" name="CustomerPhoneNumberInvoice"
+                <input class="form-control" placeholder="رقم تلفون العميل" required type="number" name="returnCustomerPhoneNumberInvoice"
                     id="CustomerPhoneNumberInvoice">
             </div>
         </div>
@@ -184,12 +184,12 @@
 
                                 <div class="col-md-3">
                                     <label for="">نسبه الخصم </label>
-                                    @error('discountBercentageInvoice')
+                                    @error('returnDiscountBercentageInvoice')
                                         <div class="alert alert-danger">
                                             <p>{{ $message }}</p>
                                         </div>
                                     @enderror
-                                    <input type="number" step="any" onkeyup="discountIn()" name="discountBercentageInvoice"
+                                    <input type="number" step="any" onkeyup="discountIn()" name="returnDiscountBercentageInvoice"
                                         id="discountBercentageInvoice" class="form-control" placeholder="نسبه الخصم">
                                 </div>
                                 <div class="col-md-3">
@@ -200,17 +200,17 @@
                                 <div class="col-md-3 " >
                                     {{-- <label for="">حذف الكسور</label> --}}
                                     <input   type="number" step="any" onkeyup="removeDecimalAll()" id="removeDecimal"
-                                        class="form-control my-4" name="removeDecimal" >
+                                        class="form-control my-4" name="returnRemoveDecimal" >
                                 </div>
 
                                 <div class="col-md-3">
                                     <label for="">الصافي</label>
-                                    @error('netInvoice')
+                                    @error('returnNetInvoice')
                                         <div class="alert alert-danger">
                                             <p>{{ $message }}</p>
                                         </div>
                                     @enderror
-                                    <input type="number" step="any" id="netInvoice" name="netInvoice" class="form-control"
+                                    <input type="number" step="any" id="netInvoice" name="returnNetInvoice" class="form-control"
                                         placeholder="الصافي">
                                 </div>
 
@@ -326,17 +326,17 @@
 
       </div>
       <div class="col-md-3">
-          <td><input type="number"  step="any" required id="quantityInvoice-${i}" name="quantityInvoice[]" class="itemCode" placeholder="الكميه"></td>
+          <td><input type="number"  step="any" required id="quantityInvoice-${i}" name="returnQuantityInvoice[]" class="itemCode" placeholder="الكميه"></td>
       </div>
       <div class="col-md-3">
-          <td><input type="number" step="any" required onkeyup="getTotal(${i})"  id="unitSaleBriceInvoice-${i}"    name="unitSaleBriceInvoice[]" class="itemCode" placeholder="سعر بيع الوحده"></td>
+          <td><input type="number" step="any" required onkeyup="getTotal(${i})"  id="unitSaleBriceInvoice-${i}"    name="returnUnitSaleBriceInvoice[]" class="itemCode" placeholder="سعر بيع الوحده"></td>
       </div>
       <div class="col-md-3">
           <td><input type="number" step="any" required id="totalInvoice-${i}" class="itemCode " placeholder="الاجمالي">
           </td>
       </div>
       <div class="col-md-3">
-          <td><input type="text"  id="notesInvoice-${i}" name="notesInvoice[]" class="itemName" placeholder="ملاحظات">
+          <td><input type="text"  id="notesInvoice-${i}" name="returnNotesInvoice[]" class="itemName" placeholder="ملاحظات">
           </td>
       </div>
   </tr>
@@ -396,17 +396,17 @@
 
       </div>
       <div class="col-md-3">
-          <td><input type="number" step="any"    required id="quantityInvoice-${x}" name="quantityInvoice[]" class="itemCode" placeholder="الكميه"></td>
+          <td><input type="number" step="any"    required id="quantityInvoice-${x}" name="returnQuantityInvoice[]" class="itemCode" placeholder="الكميه"></td>
       </div>
       <div class="col-md-3">
-          <td><input type="number"   step="any" required onkeyup="getTotal(${x})"  id="unitSaleBriceInvoice-${x}"    name="unitSaleBriceInvoice[]" class="itemCode" placeholder="سعر بيع الوحده"></td>
+          <td><input type="number"   step="any" required onkeyup="getTotal(${x})"  id="unitSaleBriceInvoice-${x}"    name="returnUnitSaleBriceInvoice[]" class="itemCode" placeholder="سعر بيع الوحده"></td>
       </div>
       <div class="col-md-3">
           <td><input type="number"  step="any" required id="totalInvoice-${x}" class="itemCode " placeholder="الاجمالي">
           </td>
       </div>
       <div class="col-md-3">
-          <td class="prt"><input type="text" id="notesInvoice-${x}" name="notesInvoice[]" class="itemName" placeholder="ملاحظات">
+          <td class="prt"><input type="text" id="notesInvoice-${x}" name="returnNotesInvoice[]" class="itemName" placeholder="ملاحظات">
           </td>
       </div>
   </tr>
@@ -557,7 +557,7 @@
         function iputsearch(i) {
             let itemNameValue = $(`#itemName-${i}`).val();
             let itemsSearchMenu = $(`#itemsSearchMenu-${i}`);
-        //     let itemName = $('#itemName');
+            // let itemName = $('#itemName');
             let itemCode = $(`#itemCode-${i}`);
             let item_id = $(`#itemId-${i}`);
             let itemUnitProductCode = $(`#itemUnitProductCode-${i}`);

@@ -22,9 +22,9 @@ class ItemController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'itemProductCode' => 'required|integer|min:1|max:1000000|unique:items,itemProductCode',
+            'itemProductCode' => 'required|string|max:255|unique:items,itemProductCode',
             'itemProductName' => 'required|string|max:255',
-            'itemUnitProductCode' => 'required|integer|min:1|max:1000000|unique:items,itemUnitProductCode',
+            'itemUnitProductCode' => 'required|integer|min:1|max:1000000',
             'itemOnlyProduct' => 'required|string|max:255',
             'itemProductNotes' => 'nullable|string',
             'cat_id' => 'required|exists:cats,id',
@@ -46,21 +46,26 @@ class ItemController extends Controller
 
     public function update(Request $request)
     {
+
         $request->validate([
             'id' => 'required|exists:items,id',
             'itemProductName' => 'required|string|max:255',
             'itemOnlyProduct' => 'required|string|max:255',
             'itemProductNotes' => 'nullable|string',
+            'itemUnitProductCode' => 'required|integer|min:1|max:1000000',
         ]);
-        Item::findOrFail($request->id)->update([
+           Item::findOrFail($request->id)->update([
             'itemProductName' => $request->itemProductName,
             'itemOnlyProduct' => $request->itemOnlyProduct,
             'itemProductNotes' => $request->itemProductNotes,
-
+               'itemUnitProductCode'=>$request->itemUnitProductCode,
         ]);
 
+
+
+
         $request->session()->flash('msg', ' تم التعديل  بنجاح');
-        return back();
+      return back();
     }
     public function search(Request $request)
     {
@@ -78,7 +83,7 @@ class ItemController extends Controller
             $item->delete();
             $msg = "تم الحذف بنجاح";
         } catch (\Exception $e) {
-            $msg = "تم الحذف بنجاح";
+            $msg = "لم يتم    الحذف بنجاح";
         }
         $request->session()->flash('msg', $msg);
         return back();

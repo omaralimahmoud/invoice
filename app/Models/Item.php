@@ -18,4 +18,9 @@ class Item extends Model
     {
         return $this->hasOne(Storehouse::class);
     }
+
+    public function consists()
+    {
+        return $this->hasOne(Consist::class);
+    }
 }

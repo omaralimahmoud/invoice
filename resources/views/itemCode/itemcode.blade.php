@@ -12,6 +12,8 @@
     <link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{URL::asset('assets/css-f/style2.css')}}">
+
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
@@ -30,11 +32,11 @@
     <!-- row -->
 
     <!-- /row -->
-    <form action="{{url("/itemCode/search")}}" method="GET">
+    <form action="{{url("/itemCode/search")}}" method="GET" class="  no-print">
 
         <div class="row">
         <div class="col-md-6">
-         <div class=" d-flex justify-content-center my-1">
+         <div class=" d-flex justify-content-center my-1  ">
               <input  name="search" type="text" placeholder="بحث" class=" text-warning  form-control ">
               <input type="submit" class="btn  btn-outline-primary mr-1" value="بحث">
           </div>
@@ -70,11 +72,11 @@
                                     <th class="wd-15p border-bottom-0"> مسلسل</th>
 
                                     <th class="wd-15p border-bottom-0">كود المخزن</th>
-                                    <th class="wd-15p border-bottom-0"> اسم المخزن</th>
+                                    <th class="wd-15p border-bottom-0 spac"> اسم المخزن</th>
                                     <th class="wd-20p border-bottom-0">كود الصنف </th>
-                                    <th class="wd-15p border-bottom-0"> اسم الصنف</th>
+                                    <th class="wd-15p border-bottom-0 spac"> اسم الصنف</th>
                                     <th class="wd-20p border-bottom-0">كود وحده الصنف </th>
-                                    <th class="wd-20p border-bottom-0"> وحده الصنف</th>
+                                    <th class="wd-20p border-bottom-0 spac"> وحده الصنف</th>
                                     <th class="wd-10p border-bottom-0">ملاحظات</th>
                                     <th class="wd-10p border-bottom-0">تعديل</th>
                                     <th class="wd-10p border-bottom-0">حذف</th>
@@ -89,11 +91,17 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{ $item->cat->storeCode }}</td>
-                                        <td>{{ $item->cat->StoreName }}</td>
+                                        <td class="spac">{{ $item->cat->StoreName }}</td>
                                         <td>{{ $item->itemProductCode }}</td>
-                                        <td>{{ $item->itemProductName }}</td>
-                                        <td>{{ $item->itemUnitProductCode }}</td>
-                                        <td>{{ $item->itemOnlyProduct }}</td>
+                                        <td class="spac">{{ $item->itemProductName }}</td>
+
+                                        <td>  {{$item->itemUnitProductCode}} </td>
+
+                                        <td>  {{$item->itemOnlyProduct}} </td>
+
+
+
+
                                         <td>{{ $item->itemProductNotes }}</td>
                                         <td>
                                             <button type="button" class=" btn  btn-info edit-btn"
@@ -119,6 +127,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <button  type="button" class="btn btn-danger float-left m-3  no-print"
+                        onclick="window.print()">
+                        طباعه
+                    </button>
                         <div class="d-flex my-3 justify-content-center">
                             {{ $items->links() }}
                         </div>
@@ -155,13 +167,13 @@
                                 <label for="" class=" text-primary">كود المخزن </label>
 
 
-                                <input type="number"   class=" form-control " id="catCode">{{-- this code is هو نفس  الكود  cat --}}
+                                <input type="number" required  class=" form-control " id="catCode">{{-- this code is هو نفس  الكود  cat --}}
                             </div>
 
 
                             <div class="col-md-6">
                                 <label for="" class=" text-primary"> اسم المخزن </label>
-                                <input    type="text" class=" form-control" id="catName"> {{-- this name is هو نفس الاسم  cat --}}
+                                <input   required  type="text" class=" form-control" id="catName"> {{-- this name is هو نفس الاسم  cat --}}
                                 <input type="hidden" name="cat_id" id="cat_id">
                                 <div class="col-12 d-none" id="CatSearchMenu">
                                     <div class="form-group">
@@ -181,7 +193,7 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="number" name="itemProductCode" class=" form-control">
+                                <input type="text" required name="itemProductCode" class=" form-control">
                             </div>
 
                             <div class="col-md-6">
@@ -191,7 +203,7 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="text" name="itemProductName" class=" form-control">
+                                <input type="text" required name="itemProductName" class=" form-control">
                             </div>
                             <div class="col-md-6">
                                 <label for="" class=" text-primary"> كود وحده الصنف </label>
@@ -200,7 +212,14 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="number" name="itemUnitProductCode" class=" form-control">
+                                {{-- <input type="number" name="itemUnitProductCode" class=" form-control"> --}}
+                                <select  required name="itemUnitProductCode" id="" class="form-control">
+                                    <option   value="1">1</option>
+                                    <option   value="2">2</option>
+                                    <option   value="3">3</option>
+
+
+                                </select>
                             </div>
 
                             <div class="col-md-6">
@@ -210,7 +229,13 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="text" name="itemOnlyProduct" class=" form-control">
+                                {{-- <input type="text" name="itemOnlyProduct" class=" form-control"> --}}
+                                <select  required name="itemOnlyProduct" id="" class="form-control">
+                                    <option   value="علبه">علبه</option>
+                                    <option   value="متر">متر</option>
+                                    <option   value="قطعه">قطعه</option>
+
+                                </select>
                             </div>
                             <div class="col-md-12">
                                 <label for="" class=" text-primary"> ملاحظات </label>
@@ -222,6 +247,8 @@
                                 <input type="text" name="itemProductNotes" class=" form-control">
                             </div>
                             <!--end model-->
+
+
 
                         </div>
                     </div>
@@ -269,7 +296,7 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input readonly type="number" name="itemProductCode" class=" form-control"
+                                <input readonly type="text" name="itemProductCode" class=" form-control"
                                     id="edit-form-itemProductCode">
                             </div>
 
@@ -290,8 +317,15 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input readonly type="number" name="itemUnitProductCode" class=" form-control"
-                                    id="edit-form-itemUnitProductCode">
+                                {{-- <input readonly type="number" name="itemUnitProductCode" class=" form-control" --}}
+                                    {{-- id="edit-form-itemUnitProductCode"> --}}
+
+                                    <select  name="itemUnitProductCode" id="edit-form-itemUnitProductCode" class="form-control"  >
+                                        <option value="1"  selected >1</option>
+                                        <option value="2"  selected >2</option>
+                                        <option value="3"  selected >3</option>
+
+                                    </select>
                             </div>
 
                             <div class="col-md-6">
@@ -301,8 +335,18 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="text" name="itemOnlyProduct" class=" form-control"
-                                    id="edit-form-itemOnlyProduct">
+                                {{-- <input type="text" name="itemOnlyProduct" class=" form-control" --}}
+                                    {{-- id="edit-form-itemOnlyProduct"> --}}
+
+                                    <select  name="itemOnlyProduct"   id="edit-form-itemOnlyProduct"  class="form-control">
+                                        <option value="علبه"  selected >علبه</option>
+                                        <option value="متر"  selected >متر</option>
+                                        <option value="قطعه"  selected >قطعه</option>
+
+
+                                    </select>
+
+
                             </div>
                             <div class="col-md-12">
                                 <label for="" class=" text-primary"> ملاحظات </label>

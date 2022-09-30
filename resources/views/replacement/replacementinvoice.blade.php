@@ -44,7 +44,7 @@
 @section('content')
     <!-- row -->
     @include('inc.masseg')
-    <form action="{{ url('/invoice/store') }}" method="post" id="printJS-form"   >
+    <form action="{{ url('/repalces/Store') }}" method="post" id="printJS-form"   >
         @csrf
 
         @if (session()->has('error'))
@@ -63,13 +63,13 @@
             </div>
             <div class="col-md-3 my-3">
                 <label for="">نوع الفاتوره</label>
-                @error('invoiceType')
+                @error('replaceInvoiceType')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
 
-                        <select  name="invoiceType" id="" class="form-control">
+                        <select  name="replaceInvoiceType" id="" class="form-control">
                             <option   value="2">نقدي</option>
                             <option   value="1">اجل</option>
 
@@ -81,23 +81,23 @@
             </div>
             <div class="col-md-3 my-3">
                 <label for="">رقم الفاتوره</label>
-                @error('numberInvoice')
+                @error('replaceNumberInvoice')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
 
                 <input   value="{{ $lastId }}" readonly class="form-control" placeholder="رقم الفاتوره" type="number"
-                    name="numberInvoice">
+                    name="replaceNumberInvoice">
             </div>
             <div class="col-md-3 my-3">
                 <label for=""> نوع العميل </label>
-                @error('customerType')
+                @error('replaceCustomerType')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
-                <select name="customerType" id="" class="form-control">
+                <select name="replaceCustomerType" id="" class="form-control">
                     <option value="1">اشخاص</option>
                     <option value="2">شركات</option>
                 </select>
@@ -106,22 +106,22 @@
 
             <div class="col-md-4 my-3">
                 <label for="">كود العميل</label>
-                @error('customerCodeInvoice')
+                @error('replaceCustomerCodeInvoice')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
                 <input class="form-control" value="{{ $lastId }}" readonly placeholder="كود العميل" type="number"
-                    name="customerCodeInvoice" id="customerCodeInvoice">
+                    name="replaceCustomerCodeInvoice" id="customerCodeInvoice">
             </div>
             <div class="col-md-4 my-3">
                 <label for="">اسم العميل </label>
-                @error('customerNameInvoice')
+                @error('replaceCustomerNameInvoice')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
-                <input class="form-control" type="text" required placeholder="اسم العميل" name="customerNameInvoice"
+                <input class="form-control" type="text" required placeholder="اسم العميل" name="replaceCustomerNameInvoice"
                     id="customerNameInvoice">
                 <div class=" d-none  " id="customerSearchMenu">
                     <div class="form-group">
@@ -133,12 +133,12 @@
 
             <div class="col-md-4 my-3">
                 <label for="">رقم تلفون العميل </label>
-                @error('CustomerPhoneNumberInvoice')
+                @error('replaceCustomerPhoneNumberInvoice')
                     <div class="alert alert-danger">
                         <p>{{ $message }}</p>
                     </div>
                 @enderror
-                <input class="form-control" placeholder="رقم تلفون العميل" required type="number" name="CustomerPhoneNumberInvoice"
+                <input class="form-control" placeholder="رقم تلفون العميل" required type="number" name="replaceCustomerPhoneNumberInvoice"
                     id="CustomerPhoneNumberInvoice">
             </div>
         </div>
@@ -166,8 +166,7 @@
                                         <th class="wd-15p border-bottom-0 prt"> كود وحده الصنف </th>
                                         <th class="wd-15p border-bottom-0"> وحده الصنف</th>
                                         <th class="wd-20p border-bottom-0"> الكميه </th>
-                                        <th class="wd-15p border-bottom-0"> سعر بيع الوحده </th>
-                                        <th class="wd-10p border-bottom-0">الاجمالي</th>
+
                                         <th class="wd-10p border-bottom-0">ملاحظات</th>
                                     </tr>
                                 </thead>
@@ -175,14 +174,14 @@
                                     <div class="col-12 bg-danger text-center font-weight-bolder" id="ajaxItemErrors"></div>
                                 </tbody>
                             </table>
-                            <div class="row  text-center my-3">
+                            {{-- <div class="row  text-center my-3">
                                 <div class="col-md-3">
                                     <label for=""> الاجمالي الكلي</label>
                                     <input type="number" step="any" id="totalAllInvoice" class="form-control"
                                         placeholder="الاجمالي">
-                                </div>
+                                </div> --}}
 
-                                <div class="col-md-3">
+                                {{-- <div class="col-md-3">
                                     <label for="">نسبه الخصم </label>
                                     @error('discountBercentageInvoice')
                                         <div class="alert alert-danger">
@@ -191,19 +190,19 @@
                                     @enderror
                                     <input type="number" step="any" onkeyup="discountIn()" name="discountBercentageInvoice"
                                         id="discountBercentageInvoice" class="form-control" placeholder="نسبه الخصم">
-                                </div>
-                                <div class="col-md-3">
+                                </div> --}}
+                                {{-- <div class="col-md-3">
                                     <label for=""> قيمه الخصم</label>
                                     <input type="number" step="any" id="discountValueInvoice" class="form-control"
                                         placeholder="قيمه الخصم">
-                                </div>
-                                <div class="col-md-3 " >
-                                    {{-- <label for="">حذف الكسور</label> --}}
+                                </div> --}}
+                                {{-- <div class="col-md-3 " >
+                                    <label for="">حذف الكسور</label>
                                     <input   type="number" step="any" onkeyup="removeDecimalAll()" id="removeDecimal"
                                         class="form-control my-4" name="removeDecimal" >
-                                </div>
+                                </div> --}}
 
-                                <div class="col-md-3">
+                                {{-- <div class="col-md-3">
                                     <label for="">الصافي</label>
                                     @error('netInvoice')
                                         <div class="alert alert-danger">
@@ -212,7 +211,7 @@
                                     @enderror
                                     <input type="number" step="any" id="netInvoice" name="netInvoice" class="form-control"
                                         placeholder="الصافي">
-                                </div>
+                                </div> --}}
 
                             </div>
 
@@ -326,17 +325,12 @@
 
       </div>
       <div class="col-md-3">
-          <td><input type="number"  step="any" required id="quantityInvoice-${i}" name="quantityInvoice[]" class="itemCode" placeholder="الكميه"></td>
+          <td><input type="number"  step="any" required id="quantityInvoice-${i}" name="replaceQuantityInvoice[]" class="itemCode" placeholder="الكميه"></td>
       </div>
+
+
       <div class="col-md-3">
-          <td><input type="number" step="any" required onkeyup="getTotal(${i})"  id="unitSaleBriceInvoice-${i}"    name="unitSaleBriceInvoice[]" class="itemCode" placeholder="سعر بيع الوحده"></td>
-      </div>
-      <div class="col-md-3">
-          <td><input type="number" step="any" required id="totalInvoice-${i}" class="itemCode " placeholder="الاجمالي">
-          </td>
-      </div>
-      <div class="col-md-3">
-          <td><input type="text"  id="notesInvoice-${i}" name="notesInvoice[]" class="itemName" placeholder="ملاحظات">
+          <td><input type="text"  id="notesInvoice-${i}" name="replaceNotesInvoice[]" class="itemName" placeholder="ملاحظات">
           </td>
       </div>
   </tr>
@@ -396,17 +390,12 @@
 
       </div>
       <div class="col-md-3">
-          <td><input type="number" step="any"    required id="quantityInvoice-${x}" name="quantityInvoice[]" class="itemCode" placeholder="الكميه"></td>
+          <td><input type="number" step="any"    required id="quantityInvoice-${x}" name="replaceQuantityInvoice[]" class="itemCode" placeholder="الكميه"></td>
       </div>
+
+
       <div class="col-md-3">
-          <td><input type="number"   step="any" required onkeyup="getTotal(${x})"  id="unitSaleBriceInvoice-${x}"    name="unitSaleBriceInvoice[]" class="itemCode" placeholder="سعر بيع الوحده"></td>
-      </div>
-      <div class="col-md-3">
-          <td><input type="number"  step="any" required id="totalInvoice-${x}" class="itemCode " placeholder="الاجمالي">
-          </td>
-      </div>
-      <div class="col-md-3">
-          <td class="prt"><input type="text" id="notesInvoice-${x}" name="notesInvoice[]" class="itemName" placeholder="ملاحظات">
+          <td class="prt"><input type="text" id="notesInvoice-${x}" name="replaceNotesInvoice[]" class="itemName" placeholder="ملاحظات">
           </td>
       </div>
   </tr>

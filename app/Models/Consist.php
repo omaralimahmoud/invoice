@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Model
+class Consist extends Model
 {
     use HasFactory;
     protected $guarded=['id','created_at','updated_at'];
-    public function storehouse()
+    public function supplier()
     {
-        return $this->hasOne(Storehouse::class);
+        return $this->belongsTo(Supplier::class);
     }
-
-    public function consists()
+    public function item()
     {
-        return $this->hasOne(Consist::class);
+        return $this->belongsTo(Item::class);
     }
 }

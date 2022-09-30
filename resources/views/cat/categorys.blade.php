@@ -149,7 +149,7 @@
                                 <p>{{$message}}</p>
                                </div>
                                 @enderror
-                                <input type="number"   name="storeCode" class=" form-control">
+                                <input type="number" required   name="storeCode" class=" form-control">
                             </div>
                             <div class="col-md-6">
                                 <label for="" class=" text-primary"> اسم المخزن </label>
@@ -158,7 +158,7 @@
                                  <p>{{$message}}</p>
                                 </div>
                                  @enderror
-                                <input type="text" name="StoreName" class=" form-control">
+                                <input type="text" required name="StoreName" class=" form-control">
                             </div>
                             <div class="col-md-12">
                                 <label for="" class=" text-primary"> ملاحظات </label>
@@ -299,7 +299,7 @@
         //console.log(id,storeCode,StoreName,Notes)
     })
 
-  
+
 </script>
 @endsection
 

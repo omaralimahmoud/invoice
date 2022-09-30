@@ -52,4 +52,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+    public function ReturnOrders()
+    {
+        return $this->hasMany(ReturnOrder::class);
+    }
+    public function ReplaceOrders()
+    {
+        return  $this->hasMany(ReplaceOrder::class);
+    }
 }

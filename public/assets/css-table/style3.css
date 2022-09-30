@@ -1,0 +1,18 @@
+@media print {
+    .no-print{
+        display: none;
+    }
+    }
+/*
+body
+{
+    width: max-content;
+
+}
+
+*/
+.spac
+{
+    white-space: nowrap;
+}
+

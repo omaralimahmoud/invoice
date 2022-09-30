@@ -19,7 +19,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto"> الفاوتير </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">
+                <h4 class="content-title mb-0 my-auto"> فاوتير المرتجع </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">
                 </span>
             </div>
         </div>
@@ -33,7 +33,20 @@
     <!-- /row -->
 
     <!-- row -->
+{{-- <div> --}}
 
+
+    {{-- @foreach ($returnOrderDetails as $returnOrderDetail) --}}
+    {{-- <p>الكميه</p> --}}
+    {{-- <h3>{{$returnOrderDetail->returnQuantityInvoice}}</h3> --}}
+    {{-- <p>السعر</p> --}}
+    {{-- <h3>{{$returnOrderDetail->returnUnitSaleBriceInvoice}}</h3> --}}
+    {{-- <p>ملاحظات</p> --}}
+    {{-- <h3>{{$returnOrderDetail->returnNotesInvoice}}</h3> --}}
+    {{-- <h3>{{$returnOrderDetail->item->itemProductCode}}</h3> --}}
+    {{-- <h3>{{$returnOrderDetail->item->itemProductName}}</h3> --}}
+    {{-- @endforeach --}}
+{{-- </div> --}}
 
     <!-- /row -->
 
@@ -45,7 +58,7 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title mg-b-0">المبيعات </h4>
+                    <h4 class="card-title mg-b-0">المرتجع </h4>
 
 
                 </div>
@@ -67,8 +80,9 @@
                                 <th class="wd-10p border-bottom-0 spac"> رقم تلفون العميل</th>
                                 <th class="wd-10p border-bottom-0 spac"> اسم المحاسب  </th>
                                 <th class="wd-10p border-bottom-0 spac">  نسبه الخصم</th>
-                                <th class="wd-10p border-bottom-0"> الصافي </th>
                                 <th class="wd-10p border-bottom-0 spac"> حذف الكسور </th>
+                                <th class="wd-10p border-bottom-0 spac"> عدد اصناف المرتجع </th>
+                                <th class="wd-10p border-bottom-0"> الصافي </th>
                                 <th class="wd-10p border-bottom-0"> التاريخ </th>
                                 <th class="wd-10p border-bottom-0"> الاعدادات </th>
 
@@ -79,21 +93,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orders as $order)
+                            @foreach ($returenOrders as $returenOrder)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>@if($order->invoiceType == 1) اجل @elseif($order->invoiceType == 2) نقدي @endif</td>
-                                <td>{{$order->numberInvoice}}</td>
-                                <td>@if($order->customerType == 1) اشخاص @elseif($order->customerType == 2) شركات @endif</td>
-                                <td>{{$order->customerCodeInvoice}}</td>
-                                <td class="spac">{{$order->customerNameInvoice}}</td>
-                                <td>{{$order->CustomerPhoneNumberInvoice}}</td>
-                                    <td>{{$order->user->name}}</td>
-                                    <td>{{$order->discountBercentageInvoice}}</td>
-                                    <td>{{$order->netInvoice}}</td>
-                                    <td>{{$order->removeDecimal}}</td>
-                                <td>{{$order->created_at}}</td>
-                                <td><a href="{{url("/sales/orderDetails/show/$order->id")}}" class="btn  btn-info">
+                                <td> @if ($returenOrder->returnInvoiceType==1) اجل @elseif ($returenOrder->returnInvoiceType==2) نقدي
+                                @endif
+                                 </td>
+                                <td>{{$returenOrder->returnNumberInvoice}}</td>
+                                <td> @if ($returenOrder->returnCustomerType ==1) اشخاص @elseif ($returenOrder->returnCustomerType ==2) شركات
+
+                                @endif</td>
+                                <td> {{$returenOrder->returnCustomerCodeInvoice}}</td>
+                                <td class="spac">{{$returenOrder->returnCustomerNameInvoice}}</td>
+                                <td>{{$returenOrder->returnCustomerPhoneNumberInvoice}}</td>
+                                    <td class="spac">{{$returenOrder->user->name}}</td>
+                                    <td>{{$returenOrder->returnDiscountBercentageInvoice}}</td>
+                                    <td>{{$returenOrder->returnRemoveDecimal}}</td>
+                                     <td>{{$returenOrder->returnTotalItems}}</td>
+                                <td>{{$returenOrder->returnNetInvoice}}</td>
+                                <td>{{$returenOrder->created_at}}</td>
+                                <td><a href="{{url("/showDetails/$returenOrder->id")}}" class="btn  btn-info">
                                     <i class="fas fa-eye"></i>
                                     </a>
                                 </td>
@@ -108,7 +127,7 @@
                         </tbody>
                     </table>
                     <div class="d-flex my-3 justify-content-center">
-                        {{$orders->links()}}
+                        {{$returenOrders->links()}}
                     </div>
                 </div>
             </div>

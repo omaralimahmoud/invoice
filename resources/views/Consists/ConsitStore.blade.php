@@ -21,7 +21,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">المخزن</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">
+                <h4 class="content-title mb-0 my-auto">مخزن التالف</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">
                 </span>
             </div>
         </div>
@@ -46,13 +46,12 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="card-title mg-b-0">الاستعلام</h4>
-                        <a class="btn ripple btn-info" data-target="#modaldemo3" data-toggle="modal" href="">اضف في
-                            المخزن</a>
+                    <div class="d-flex justify-content-between float-left">
+                        {{-- <h4 class="card-title mg-b-0">الاستعلام</h4> --}}
+                        <a class="btn ripple btn-info" data-target="#modaldemo3" data-toggle="modal" href="">  اضف في مخزن التالف </a>
 
                     </div>
-                    <form action="{{ url('/storehouse/search') }}" class="no-print">
+                    {{-- <form action="{{ url('/storehouse/search') }}" class="no-print">
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="" class=" text-primary">كود الصنف</label>
@@ -87,7 +86,7 @@
                             </div>
                         </div>
 
-                    </form>
+                    </form> --}}
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -102,11 +101,11 @@
                                     <th  class="wd-15p border-bottom-0 spac" > كود الصنف</th>
                                     <th  class="wd-15p border-bottom-0 spac">اسم الصنف </th>
                                     <th class="wd-20p border-bottom-0 spac">الكميه</th>
-                                    <th class="wd-15p border-bottom-0 spac">سعر الشراء </th>
+                                    {{-- <th class="wd-15p border-bottom-0 spac">سعر الشراء </th> --}}
                                     <th class="wd-10p border-bottom-0 spac">سعر البيع</th>
-                                    <th class="wd-25p border-bottom-0 spac">السعر النهائي</th>
-                                    <th class="wd-25p border-bottom-0 spac"> تاريخ الشراء</th>
-                                    <th class="wd-25p border-bottom-0 spac"> الرصيد الافتتحاي</th>
+                                    {{-- <th class="wd-25p border-bottom-0 spac">السعر النهائي</th> --}}
+                                    <th class="wd-25p border-bottom-0 spac"> التاريخ</th>
+                                    {{-- <th class="wd-25p border-bottom-0 spac"> الرصيد الافتتحاي</th> --}}
                                     <th class="wd-15p border-bottom-0 spac">ملاحظات</th>
                                     <th class="wd-15p border-bottom-0 ">تعديل</th>
                                     <th class="wd-15p border-bottom-0">حذف</th>
@@ -116,41 +115,41 @@
                                 </tr>
                             </thead>
                             <tbody  >
-                                @foreach ($storehouses as $storehouse)
+                                @foreach ($consists as $consist)
                                     <tr >
                                         <td>{{$loop->iteration}}</td>
-                                        <td class="spac">{{ $storehouse->item->cat->storeCode }}</td>
-                                        <td class="spac">{{ $storehouse->item->cat->StoreName }}</td>
-                                        <td class="spac">{{ $storehouse->supplier->SupplierCode }}</td>
-                                        <td class="spac">{{ $storehouse->supplier->SupplierName }}</td>
-                                        <td class="spac">{{ $storehouse->item->itemProductCode }}</td>
-                                        <td class="spac" >{{ $storehouse->item->itemProductName }}</td>
-                                        <td>{{ $storehouse->quantity }}</td>
-                                        <td>{{ $storehouse->PurchasingBrice }}</td>
-                                        <td>{{ $storehouse->sellingBrice }}</td>
-                                        <td>{{ $storehouse->finalBriceEnd }}</td>
-                                        <td>{{ $storehouse->purchasedDate }}</td>
-                                        <td>{{ $storehouse->openingBalance }}</td>
-                                        <td  class="spac">{{ $storehouse->storehouseNotes }}</td>
+                                        <td class="spac">{{ $consist->item->cat->storeCode }}</td>
+                                        <td class="spac">{{ $consist->item->cat->StoreName }}</td>
+                                        <td class="spac">{{ $consist->supplier->SupplierCode }}</td>
+                                        <td class="spac">{{ $consist->supplier->SupplierName }}</td>
+                                        <td class="spac">{{ $consist->item->itemProductCode }}</td>
+                                        <td class="spac" >{{ $consist->item->itemProductName }}</td>
+                                        <td>{{ $consist->consistsquantity }}</td>
+                                        {{-- <td>{{ $storehouse->PurchasingBrice }}</td> --}}
+                                        <td>{{ $consist->consistsSellingBrice }}</td>
+                                        {{-- <td>{{ $storehouse->finalBriceEnd }}</td> --}}
+                                        <td>{{ $consist->created_at }}</td>
+                                        {{-- <td>{{ $storehouse->openingBalance }}</td> --}}
+                                        <td  class="spac">{{ $consist->ConsistsNotes }}</td>
                                         <td> <button type="button" class="btn btn-info edit-btn"
-                                                data-id="{{ $storehouse->id }}"
-                                                data-storeCode="{{ $storehouse->item->cat->storeCode }}"
-                                                data-StoreName="{{ $storehouse->item->cat->StoreName }}"
-                                                data-SupplierCode="{{ $storehouse->supplier->SupplierCode }}"
-                                                data-SupplierName="{{ $storehouse->supplier->SupplierName }}"
-                                                data-itemProductCode="{{ $storehouse->item->itemProductCode }}"
-                                                data-itemProductName="{{ $storehouse->item->itemProductName }}"
-                                                data-quantity="{{ $storehouse->quantity }}"
-                                                data-PurchasingBrice="{{ $storehouse->PurchasingBrice }}"
-                                                data-sellingBrice="{{ $storehouse->sellingBrice }}"
-                                                data-finalBriceEnd="{{ $storehouse->finalBriceEnd }}"
-                                                data-purchasedDate="{{ $storehouse->purchasedDate }}"
-                                                data-openingBalance="{{ $storehouse->openingBalance }}"
-                                                data-storehouseNotes="{{ $storehouse->storehouseNotes }}"
+                                                data-id="{{ $consist->id }}"
+                                                data-storeCode="{{ $consist->item->cat->storeCode }}"
+                                                data-StoreName="{{ $consist->item->cat->StoreName }}"
+                                                data-SupplierCode="{{ $consist->supplier->SupplierCode }}"
+                                                data-SupplierName="{{ $consist->supplier->SupplierName }}"
+                                                data-itemProductCode="{{ $consist->item->itemProductCode }}"
+                                                data-itemProductName="{{ $consist->item->itemProductName }}"
+                                                data-quantity="{{ $consist->consistsquantity }}"
+                                                {{-- data-PurchasingBrice="{{ $storehouse->PurchasingBrice }}" --}}
+                                                data-sellingBrice="{{ $consist->consistsSellingBrice }}"
+                                                {{-- data-finalBriceEnd="{{ $storehouse->finalBriceEnd }}" --}}
+                                                {{-- data-purchasedDate="{{ $storehouse->purchasedDate }}" --}}
+                                                {{-- data-openingBalance="{{ $storehouse->openingBalance }}" --}}
+                                                data-storehouseNotes="{{ $consist->ConsistsNotes }}"
                                                 data-target="#edit-model" data-toggle="modal">
                                                 <i class="fas fa-edit"></i>
                                             </button></td>
-                                        <td> <a href="{{ url("/storehouse/delete/$storehouse->id") }}"
+                                        <td> <a href="{{ url("/ConsitStore/delete/$consist->id") }}"
                                                 class=" btn  btn-danger">
                                                 <i class="far fa-trash-alt"></i>
                                             </a></td>
@@ -169,7 +168,7 @@
                         onclick="window.print()">
                         طباعه
                     </button>
-                        {{ $storehouses->links() }}
+                        {{ $consists->links() }}
                     </div>
                 </div>
             </div>
@@ -186,17 +185,17 @@
     <!-- End Small Modal -->
 
     <!-- Large Modal -->
-    <form action="{{ url('/storehouse/store') }}" method="POST">
+    <form action="{{ url('/ConsitStore/store') }}" method="POST">
         @csrf
         <div class="modal" id="modaldemo3">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title">اضافه في المخزن</h6><button aria-label="Close" class="close"
+                        <h6 class="modal-title">    اضف في مخزن التالف</h6><button aria-label="Close" class="close"
                             data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                         @if (Auth::user()->role->name == 'admin' || Auth::user()->role->name == 'superadmin' )
+                         {{-- @if (Auth::user()->role->name == 'admin' || Auth::user()->role->name == 'superadmin' )
 
 
                         <div class="col-md-6">
@@ -208,16 +207,16 @@
                             @enderror
                             <input type="number" name="openingBalance" class="form-control">
                         </div>
-                        @endif
-                        <div class="col-md-6">
+                        @endif --}}
+                        {{-- <div class="col-md-6">
                             <label for="" class=" text-primary "> تاريخ الشراء</label>
                             @error('purchasedDate')
                                 <div class="alert alert-danger">
                                     <p>{{ $message }}</p>
                                 </div>
                             @enderror
-                            <input type="datetime" required style="direction:ltr" name="purchasedDate" class="form-control">
-                        </div>
+                            <input type="datetime" style="direction:ltr" name="purchasedDate" class="form-control">
+                        </div> --}}
                         <div class="row">
 
                             <div class="col-md-6">
@@ -270,33 +269,33 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="" class=" text-primary">الكميه</label>
-                                @error('quantity')
+                                @error('consistsquantity')
                                     <div class="alert alert-danger">
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="number" required step="any" name="quantity" class=" form-control">
+                                <input type="number" required step="any" name="consistsquantity" class=" form-control">
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <label for="" class=" text-primary">سعر الشراء</label>
                                 @error('PurchasingBrice')
                                     <div class="alert alert-danger">
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="number" required step="any" name="PurchasingBrice" class=" form-control">
-                            </div>
+                                <input type="number" step="any" name="PurchasingBrice" class=" form-control">
+                            </div> --}}
 
                             <div class="col-md-6">
                                 <label for="" class=" text-primary">سعر البيع</label>
-                                @error('sellingBrice')
+                                @error('consistsSellingBrice')
                                     <div class="alert alert-danger">
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="number" step="any" name="sellingBrice" class=" form-control">
+                                <input type="number" step="any" name="consistsSellingBrice" class=" form-control">
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <label for="" class=" text-primary">السعر النهائي</label>
                                 @error('finalBriceEnd')
                                     <div class="alert alert-danger">
@@ -304,16 +303,16 @@
                                     </div>
                                 @enderror
                                 <input type="number"step="any" name="finalBriceEnd" class=" form-control">
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-12">
                                 <label for="" class=" text-primary">ملاحظات</label>
-                                @error('storehouseNotes')
+                                @error('ConsistsNotes')
                                     <div class="alert alert-danger">
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="text" name="storehouseNotes" class=" form-control">
+                                <input type="text" name="ConsistsNotes" class=" form-control">
                             </div>
                             <!--end model-->
 
@@ -331,7 +330,7 @@
 
     ////////////////////////////////////////
     <!--start update -->
-    <form action="{{ url('/storehouse/update') }}" method="POST">
+    <form action="{{ url('/ConsitStore/update') }}" method="POST">
         @csrf
         <input type="hidden" name="id" id="edit-form-id">
         <div class="modal" id="edit-model">
@@ -342,7 +341,7 @@
                             data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <label for="" class=" text-primary "> الرصيد الافتتحاي </label>
                             @error('openingBalance')
                                 <div class="alert alert-danger">
@@ -350,8 +349,8 @@
                                 </div>
                             @enderror
                             <input type="text" name="openingBalance" class="form-control" id="edit-form-openingBalance">
-                        </div>
-                        <div class="col-md-6">
+                        </div> --}}
+                        {{-- <div class="col-md-6">
                             <label for="" class=" text-primary "> تاريخ الشراء</label>
                             @error('purchasedDate')
                                 <div class="alert alert-danger">
@@ -360,7 +359,7 @@
                             @enderror
                             <input type="datetime" style="direction:ltr" name="purchasedDate" class="form-control"
                                  id="edit-form-purchasedDate">
-                        </div>
+                        </div> --}}
                         <div class="row">
 
                             <div class="col-md-6">
@@ -392,14 +391,14 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="" class=" text-primary">الكميه</label>
-                                @error('quantity')
+                                @error('consistsquantity')
                                     <div class="alert alert-danger">
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="number" step="any" id="edit-form-quantity" name="quantity" class=" form-control">
+                                <input type="number" step="any" id="edit-form-quantity" name="consistsquantity" class=" form-control">
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <label for="" class=" text-primary">سعر الشراء</label>
                                 @error('PurchasingBrice')
                                     <div class="alert alert-danger">
@@ -408,18 +407,18 @@
                                 @enderror
                                 <input type="number" step="any"  id="edit-form-PurchasingBrice" name="PurchasingBrice"
                                     class=" form-control">
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-6">
                                 <label for="" class=" text-primary">سعر البيع</label>
-                                @error('sellingBrice')
+                                @error('consistsSellingBrice')
                                     <div class="alert alert-danger">
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="text" step="any"  id="edit-form-sellingBrice" name="sellingBrice" class=" form-control">
+                                <input type="text" step="any"  id="edit-form-sellingBrice" name="consistsSellingBrice" class=" form-control">
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <label for="" class=" text-primary">السعر النهائي</label>
                                 @error('finalBriceEnd')
                                     <div class="alert alert-danger">
@@ -428,16 +427,16 @@
                                 @enderror
                                 <input type="number" step="any"    id="edit-form-finalBriceEnd" name="finalBriceEnd"
                                     class=" form-control">
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-12">
                                 <label for="" class=" text-primary">ملاحظات</label>
-                                @error('storehouseNotes')
+                                @error('ConsistsNotes')
                                     <div class="alert alert-danger">
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="text" id="edit-form-storehouseNotes" name="storehouseNotes"
+                                <input type="text" id="edit-form-storehouseNotes" name="ConsistsNotes"
                                     class=" form-control">
                             </div>
                             <!--end model-->
@@ -874,4 +873,3 @@
         })
     </script>
 @endsection
-

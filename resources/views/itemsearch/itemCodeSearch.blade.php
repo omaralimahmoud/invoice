@@ -208,7 +208,15 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="number" name="itemUnitProductCode" class=" form-control">
+
+                                {{-- <input type="number" name="itemUnitProductCode" class=" form-control"> --}}
+                                <select  name="itemUnitProductCode" id="" class="form-control">
+                                    <option   value="1">1</option>
+                                    <option   value="2">2</option>
+                                    <option   value="3">3</option>
+
+
+                                </select>
                             </div>
 
                             <div class="col-md-6">
@@ -218,7 +226,13 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="text" name="itemOnlyProduct" class=" form-control">
+                                {{-- <input type="text" name="itemOnlyProduct" class=" form-control"> --}}
+                                <select  name="itemOnlyProduct" id="" class="form-control">
+                                    <option   value="علبه">علبه</option>
+                                    <option   value="متر">متر</option>
+                                    <option   value="قطعه">قطعه</option>
+
+                                </select>
                             </div>
                             <div class="col-md-12">
                                 <label for="" class=" text-primary"> ملاحظات </label>
@@ -298,8 +312,14 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input readonly type="number" name="itemUnitProductCode" class=" form-control"
-                                    id="edit-form-itemUnitProductCode">
+                                {{-- <input readonly type="number" name="itemUnitProductCode" class=" form-control" --}}
+                                    {{-- id="edit-form-itemUnitProductCode"> --}}
+                                    <select  name="itemUnitProductCode" id="edit-form-itemUnitProductCode" class="form-control"  >
+                                        <option value="1"  selected >1</option>
+                                        <option value="2"  selected >2</option>
+                                        <option value="3"  selected >3</option>
+
+                                    </select>
                             </div>
 
                             <div class="col-md-6">
@@ -309,8 +329,15 @@
                                         <p>{{ $message }}</p>
                                     </div>
                                 @enderror
-                                <input type="text" name="itemOnlyProduct" class=" form-control"
-                                    id="edit-form-itemOnlyProduct">
+                                {{-- <input type="text" name="itemOnlyProduct" class=" form-control" --}}
+                                    {{-- id="edit-form-itemOnlyProduct"> --}}
+                                    <select  name="itemOnlyProduct"   id="edit-form-itemOnlyProduct"  class="form-control">
+                                        <option value="علبه"  selected >علبه</option>
+                                        <option value="متر"  selected >متر</option>
+                                        <option value="قطعه"  selected >قطعه</option>
+
+
+                                    </select>
                             </div>
                             <div class="col-md-12">
                                 <label for="" class=" text-primary"> ملاحظات </label>

@@ -3,13 +3,18 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Web\OrderController;
 use App\Http\Controllers\Web\Catcontroller;
+use App\Http\Controllers\Web\ConsistController;
 use App\Http\Controllers\Web\CustomerController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\ItemController;
+use App\Http\Controllers\Web\ReplaceOrderController;
+use App\Http\Controllers\Web\ReturnOrderController;
 use App\Http\Controllers\Web\SupplierController;
 use App\Http\Controllers\Web\StorehouseController;
 use App\Http\Controllers\Web\UserAdminController;
 use App\Models\Customer;
+use App\Models\ReplaceOrder;
+use App\Models\ReturnOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
+  //  Route::get('/return', [HomeController::class, 'store']);
     Route::get('/categorys', [Catcontroller::class, 'index']);
     Route::post('/categorys/store', [Catcontroller::class, 'store']);
     Route::post('/categorys/update', [Catcontroller::class, 'update']);
@@ -63,6 +69,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/editPassword',[UserAdminController::class,'index'])->middleware('IsSuperAdmin');
     Route::post('/editPassword/update',[UserAdminController::class,'update'])->middleware('IsSuperAdmin');
 
+    Route::get('/return',[ReturnOrderController::class,'index']);
+    Route::get('/showReturenOrder',[ReturnOrderController::class,'create']);
+    Route::get('/showDetails/{ReturnOrder}',[ReturnOrderController::class,'show']);
+    Route::post('/return/store',[ReturnOrderController::class,'store']);
+
+    Route::get('/ConsitStore',[ConsistController::class,'index']);
+    Route::post('/ConsitStore/store',[ConsistController::class,'store']);
+    Route::post('/ConsitStore/update',[ConsistController::class,'update']);
+    Route::get('/ConsitStore/delete/{consist}',[ConsistController::class,'delete']);
+    Route::get('/replacementinvoice',[ReplaceOrderController::class,'index']);
+    Route::get('/repalceshow',[ReplaceOrderController::class,'create']);
+    Route::get('/replaceShowDeatil/{replaceOrder}',[ReplaceOrderController::class,'show']);
+    Route::post('/repalces/Store',[ReplaceOrderController::class,'store']);
 });
 
 

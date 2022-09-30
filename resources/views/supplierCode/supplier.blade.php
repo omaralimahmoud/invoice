@@ -143,7 +143,7 @@
                                 <p> {{$message}}</p>
                               </div>
                             @enderror
-                            <input  name="SupplierCode" type="number" class=" form-control">
+                            <input  name="SupplierCode" required type="number" class=" form-control">
                         </div>
                         <div class="col-md-6">
                             <label for="" class=" text-primary"> اسم المورد </label>
@@ -152,7 +152,7 @@
                                 <p>{{$message}}</p>
                             </div>
                             @enderror
-                            <input  name="SupplierName" type="text" class=" form-control">
+                            <input  name="SupplierName" required type="text" class=" form-control">
                         </div>
 
                         <div class="col-md-12">

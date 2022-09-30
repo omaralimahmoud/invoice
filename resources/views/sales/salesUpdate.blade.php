@@ -3,6 +3,8 @@
     <!---Internal Owl Carousel css-->
     <!---Internal  Multislider css-->
     <!--- Select2 css -->
+
+
     <link rel="stylesheet" href="{{ URL::asset('assets/css_print/print.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/style/style.css') }}">
 @endsection
@@ -552,3 +554,6 @@
     </script>
     {{-- function total --}}
 @endsection
+
+
+

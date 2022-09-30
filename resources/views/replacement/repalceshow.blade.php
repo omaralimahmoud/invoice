@@ -19,7 +19,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto"> الفاوتير </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">
+                <h4 class="content-title mb-0 my-auto"> فاوتير المرتجع </h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">
                 </span>
             </div>
         </div>
@@ -33,6 +33,8 @@
     <!-- /row -->
 
     <!-- row -->
+{{-- <div> --}}
+
 
 
     <!-- /row -->
@@ -45,7 +47,7 @@
         <div class="card">
             <div class="card-header pb-0">
                 <div class="d-flex justify-content-between">
-                    <h4 class="card-title mg-b-0">المبيعات </h4>
+                    <h4 class="card-title mg-b-0">المرتجع </h4>
 
 
                 </div>
@@ -66,9 +68,7 @@
                                 <th class="wd-10p border-bottom-0 spac"> اسم العميل</th>
                                 <th class="wd-10p border-bottom-0 spac"> رقم تلفون العميل</th>
                                 <th class="wd-10p border-bottom-0 spac"> اسم المحاسب  </th>
-                                <th class="wd-10p border-bottom-0 spac">  نسبه الخصم</th>
-                                <th class="wd-10p border-bottom-0"> الصافي </th>
-                                <th class="wd-10p border-bottom-0 spac"> حذف الكسور </th>
+                                <th class="wd-10p border-bottom-0 spac"> عدد اصناف المرتجع </th>
                                 <th class="wd-10p border-bottom-0"> التاريخ </th>
                                 <th class="wd-10p border-bottom-0"> الاعدادات </th>
 
@@ -79,21 +79,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orders as $order)
+                            @foreach ($replaceOrders as $replaceOrder)
                             <tr>
                                 <td>{{$loop->iteration}}</td>
-                                <td>@if($order->invoiceType == 1) اجل @elseif($order->invoiceType == 2) نقدي @endif</td>
-                                <td>{{$order->numberInvoice}}</td>
-                                <td>@if($order->customerType == 1) اشخاص @elseif($order->customerType == 2) شركات @endif</td>
-                                <td>{{$order->customerCodeInvoice}}</td>
-                                <td class="spac">{{$order->customerNameInvoice}}</td>
-                                <td>{{$order->CustomerPhoneNumberInvoice}}</td>
-                                    <td>{{$order->user->name}}</td>
-                                    <td>{{$order->discountBercentageInvoice}}</td>
-                                    <td>{{$order->netInvoice}}</td>
-                                    <td>{{$order->removeDecimal}}</td>
-                                <td>{{$order->created_at}}</td>
-                                <td><a href="{{url("/sales/orderDetails/show/$order->id")}}" class="btn  btn-info">
+                                <td> @if ($replaceOrder->replaceInvoiceType==1) اجل @elseif ($replaceOrder->replaceInvoiceType==2) نقدي
+                                @endif
+                                 </td>
+                                <td>{{$replaceOrder->replaceNumberInvoice}}</td>
+                                <td> @if ($replaceOrder->replaceCustomerType ==1) اشخاص @elseif ($replaceOrder->replaceCustomerType ==2) شركات
+
+                                @endif</td>
+                                <td> {{$replaceOrder->replaceCustomerCodeInvoice}}</td>
+                                <td class="spac">{{$replaceOrder->replaceCustomerNameInvoice}}</td>
+                                <td>{{$replaceOrder->replaceCustomerPhoneNumberInvoice}}</td>
+                                    <td class="spac">{{$replaceOrder->user->name}}</td>
+
+
+                                     <td>{{$replaceOrder->replaceTotalItems}}</td>
+
+                                <td>{{$replaceOrder->created_at}}</td>
+                                <td><a href="{{url("/replaceShowDeatil/$replaceOrder->id")}}" class="btn  btn-info">
                                     <i class="fas fa-eye"></i>
                                     </a>
                                 </td>
@@ -108,7 +113,7 @@
                         </tbody>
                     </table>
                     <div class="d-flex my-3 justify-content-center">
-                        {{$orders->links()}}
+                        {{$replaceOrders->links()}}
                     </div>
                 </div>
             </div>

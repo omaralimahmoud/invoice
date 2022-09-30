@@ -130,7 +130,7 @@ class OrderController extends Controller
     {
         $data['order'] = $order;
         $data['orderDetails'] = $order->details;
-
+        
         return view('sales.show')->with($data);
     }
 

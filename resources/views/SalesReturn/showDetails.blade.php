@@ -1,3 +1,4 @@
+
 @extends('layouts.master')
 @section('css')
     <!---Internal Owl Carousel css-->
@@ -42,59 +43,59 @@
 
         <div class=" col-md-2 my-2">
             <label for="">مسلسل</label>
-        <input type="text" class=" form-control  " readonly value="{{ $order->id }}">
+        <input type="text" class=" form-control  " readonly value="{{ $ReturnOrder->id }}">
         </div>
         <div class=" col-md-2 my-2">
             <label for="">نوع الفاتوره</label>
-        <input type="text" class=" form-control" readonly value=" @if ($order->invoiceType == 1)
+        <input type="text" class=" form-control" readonly value=" @if ($ReturnOrder->returnInvoiceType == 1)
         اجل
-    @elseif($order->invoiceType == 2)
+    @elseif($ReturnOrder->returnInvoiceType == 2)
         نقدي
     @endif">
         </div>
         <div class=" col-md-2 my-2">
             <label for="">رقم الفاتوره</label>
-        <input type="text" class=" form-control" readonly value=" {{$order->numberInvoice}}">
+        <input type="text" class=" form-control" readonly value=" {{$ReturnOrder->returnNumberInvoice}}">
         </div>
         <div class=" col-md-2 my-2">
             <label for="">نوع العميل</label>
-        <input type="text" class=" form-control" readonly value="  @if ($order->customerType == 1)
+        <input type="text" class=" form-control" readonly value="  @if ($ReturnOrder->returnCustomerType == 1)
         اشخاص
-    @elseif($order->customerType == 2)
+    @elseif($ReturnOrder->returnCustomerType == 2)
         شركات
     @endif">
         </div>
         <div class=" col-md-2 my-2">
             <label for="">كود العميل</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->customerCodeInvoice }}">
+        <input type="text" class=" form-control" readonly value="{{ $ReturnOrder->returnCustomerCodeInvoice }}">
         </div>
         <div class=" col-md-2 my-2">
             <label for="">اسم العميل</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->customerNameInvoice }}">
+        <input type="text" class=" form-control" readonly value="{{ $ReturnOrder->returnCustomerNameInvoice }}">
         </div>
         <div class=" col-md-2 my-2">
             <label for="">رقم تلفون العميل	</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->CustomerPhoneNumberInvoice }}">
+        <input type="text" class=" form-control" readonly value="{{ $ReturnOrder->returnCustomerPhoneNumberInvoice }}">
         </div>
         <div class=" col-md-2 my-2">
             <label for="">اسم المحاسب	</label>
-        <input type="text" class=" form-control" readonly  value="{{ $order->user->name }}">
+        <input type="text" class=" form-control" readonly  value="{{ $ReturnOrder->user->name }}">
         </div>
         <div class=" col-md-2 my-2">
             <label for="">نسبه الخصم	</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->discountBercentageInvoice }}">
+        <input type="text" class=" form-control" readonly value="{{ $ReturnOrder->returnDiscountBercentageInvoice }}">
         </div>
         <div class=" col-md-2 my-3">
             <label for="" class="no-print">حذف الكسور	</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->removeDecimal }}">
+        <input type="text" class=" form-control" readonly value="{{ $ReturnOrder->returnRemoveDecimal }}">
         </div>
         <div class=" col-md-2 my-2">
            <label for="">الصافي</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->netInvoice }}">
+        <input type="text" class=" form-control" readonly value="{{ $ReturnOrder->returnNetInvoice }}">
         </div>
         <div class=" col-md-2 my-2">
             <label for="">التاريخ</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->created_at }}">
+        <input type="text" class=" form-control" readonly value="{{ $ReturnOrder->created_at }}">
         </div>
     </div>
 
@@ -147,7 +148,7 @@
                                 </thead>
                                 <tbody >
                                     <tr>
-                                        <td>{{ $order->id }}</td>
+                                        {{-- <td>{{ $order->id }}</td>
                                         <td>
                                             @if ($order->invoiceType == 1)
                                                 اجل
@@ -170,7 +171,7 @@
                                         <td>{{ $order->discountBercentageInvoice }}</td>
                                         <td>{{ $order->netInvoice }}</td>
                                         <td>{{ $order->removeDecimal }}</td>
-                                        <td>{{ $order->created_at }}</td>
+                                        <td>{{ $order->created_at }}</td> --}}
 
                                     </tr>
 
@@ -218,16 +219,16 @@
                                     </tr>
                                 </thead>
                                 <tbody >
-                                    @foreach ($orderDetails as $orderDetail)
+                                    @foreach ($ReturnOrderDetails as $ReturnOrderDetail)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $orderDetail->item->itemProductCode }}</td>
-                                            <td class="spac">{{ $orderDetail->item->itemProductName }}</td>
-                                            <td >{{ $orderDetail->item->itemUnitProductCode }}</td>
-                                            <td>{{ $orderDetail->item->itemOnlyProduct }}</td>
-                                            <td>{{ $orderDetail->quantityInvoice }}</td>
-                                            <td>{{ $orderDetail->unitSaleBriceInvoice }}</td>
-                                            <td  class="spac">{{ $orderDetail->notesInvoice }}</td>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$ReturnOrderDetail->item->itemProductCode}}</td>
+                                            <td class="spac">{{$ReturnOrderDetail->item->itemProductName}}</td>
+                                            <td >{{ $ReturnOrderDetail->item->itemUnitProductCode}}</td>
+                                            <td>{{ $ReturnOrderDetail->item->itemOnlyProduct}}</td>
+                                            <td>{{$ReturnOrderDetail->returnQuantityInvoice}}</td>
+                                            <td>{{$ReturnOrderDetail->returnUnitSaleBriceInvoice}}</td>
+                                            <td  class="spac">{{$ReturnOrderDetail->returnNotesInvoice}}</td>
 
 
 
@@ -243,7 +244,7 @@
                             </table>
 
                             <a href="{{ url()->previous() }}" class=" btn btn-info no-print">الرجوع الى الخلف</a>
-                            <a href="{{ url('/invoice') }}" class=" btn btn-secondary no-print">الرجوع الى الفاتوره</a>
+                            <a href="{{ url('/return') }}" class=" btn btn-secondary no-print">الرجوع الى الفاتوره</a>
                             <button  type="button" class="btn btn-danger float-left m-3  no-print"
                             onclick="window.print()">
                             طباعه
@@ -306,4 +307,3 @@
 
 @section('script')
 @endsection
-

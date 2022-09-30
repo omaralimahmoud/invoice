@@ -14,10 +14,11 @@
 }
 
 
+
 .table {
     text-align: center;
     box-sizing: border-box;
-
+   
     overflow: auto;
     color: #000;
 }

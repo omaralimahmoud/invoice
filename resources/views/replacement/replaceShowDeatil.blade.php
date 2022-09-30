@@ -37,64 +37,54 @@
 @section('content')
     <!-- row -->
 
-    <h3>بيانات الفاتوره</h3>
+    <h3>بيانات  فاتوره الاستبدال </h3>
     <div class="row ">
 
-        <div class=" col-md-2 my-2">
+        <div class=" col-md-3 my-2">
             <label for="">مسلسل</label>
-        <input type="text" class=" form-control  " readonly value="{{ $order->id }}">
+        <input type="text" class=" form-control  " readonly value="{{ $replaceOrder->id }}">
         </div>
-        <div class=" col-md-2 my-2">
+        <div class=" col-md-3 my-2">
             <label for="">نوع الفاتوره</label>
-        <input type="text" class=" form-control" readonly value=" @if ($order->invoiceType == 1)
+        <input type="text" class=" form-control" readonly value=" @if ($replaceOrder->replaceInvoiceType == 1)
         اجل
-    @elseif($order->invoiceType == 2)
+    @elseif($replaceOrder->replaceInvoiceType == 2)
         نقدي
     @endif">
         </div>
-        <div class=" col-md-2 my-2">
+        <div class=" col-md-3 my-2">
             <label for="">رقم الفاتوره</label>
-        <input type="text" class=" form-control" readonly value=" {{$order->numberInvoice}}">
+        <input type="text" class=" form-control" readonly value=" {{$replaceOrder->replaceNumberInvoice}}">
         </div>
-        <div class=" col-md-2 my-2">
+        <div class=" col-md-3 my-2">
             <label for="">نوع العميل</label>
-        <input type="text" class=" form-control" readonly value="  @if ($order->customerType == 1)
+        <input type="text" class=" form-control" readonly value="  @if ($replaceOrder->replaceCustomerType == 1)
         اشخاص
-    @elseif($order->customerType == 2)
+    @elseif($replaceOrder->replaceCustomerType == 2)
         شركات
     @endif">
         </div>
-        <div class=" col-md-2 my-2">
+        <div class=" col-md-3 my-2">
             <label for="">كود العميل</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->customerCodeInvoice }}">
+        <input type="text" class=" form-control" readonly value="{{ $replaceOrder->replaceCustomerCodeInvoice }}">
         </div>
-        <div class=" col-md-2 my-2">
+        <div class=" col-md-3 my-2">
             <label for="">اسم العميل</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->customerNameInvoice }}">
+        <input type="text" class=" form-control" readonly value="{{ $replaceOrder->replaceCustomerNameInvoice }}">
         </div>
-        <div class=" col-md-2 my-2">
+        <div class=" col-md-3 my-2">
             <label for="">رقم تلفون العميل	</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->CustomerPhoneNumberInvoice }}">
+        <input type="text" class=" form-control" readonly value="{{ $replaceOrder->replaceCustomerPhoneNumberInvoice }}">
         </div>
-        <div class=" col-md-2 my-2">
+        <div class=" col-md-3 my-2">
             <label for="">اسم المحاسب	</label>
-        <input type="text" class=" form-control" readonly  value="{{ $order->user->name }}">
+        <input type="text" class=" form-control" readonly  value="{{ $replaceOrder->user->name }}">
         </div>
-        <div class=" col-md-2 my-2">
-            <label for="">نسبه الخصم	</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->discountBercentageInvoice }}">
-        </div>
-        <div class=" col-md-2 my-3">
-            <label for="" class="no-print">حذف الكسور	</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->removeDecimal }}">
-        </div>
-        <div class=" col-md-2 my-2">
-           <label for="">الصافي</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->netInvoice }}">
-        </div>
-        <div class=" col-md-2 my-2">
+
+
+        <div class=" col-md-3 my-2">
             <label for="">التاريخ</label>
-        <input type="text" class=" form-control" readonly value="{{ $order->created_at }}">
+        <input type="text" class=" form-control" readonly value="{{ $replaceOrder->created_at }}">
         </div>
     </div>
 
@@ -105,85 +95,7 @@
     <!-- /row -->
     <form method="POST" action="" id="printJS-form"    style="direction: rtl" >
         @csrf
-        <div class="row row-sm">
-            <!--start table-->
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-header pb-0 no-print d-none">
-                        <div class="d-flex justify-content-between">
-                            <h4 class="card-title mg-b-0 ">البيانات </h4>
 
-
-                        </div>
-
-
-                    </div>
-                    <div class="card-body no-print  d-none">
-                        <div class="table-responsive">
-                            <table class="table text-md-nowrap text-center grob " id="example1">
-                                <thead >
-                                    <tr>
-                                        <th class="wd-15p border-bottom-0"> مسلسل</th>
-
-                                        <th class="wd-15p border-bottom-0">نوع الفاتوره</th>
-
-                                        <th class="wd-20p border-bottom-0"> رقم الفاتوره </th>
-                                        <th class="wd-15p border-bottom-0"> نوع العميل </th>
-                                        <th class="wd-10p border-bottom-0">كود العميل</th>
-                                        <th class="wd-10p border-bottom-0"> اسم العميل</th>
-                                        <th class="wd-10p border-bottom-0"> رقم تلفون العميل</th>
-                                        <th class="wd-10p border-bottom-0"> اسم المحاسب </th>
-                                        <th class="wd-10p border-bottom-0 "> نسبه الخصم</th>
-                                        <th class="wd-10p border-bottom-0"> الصافي </th>
-                                        <th class="wd-10p border-bottom-0"> حذف الكسور </th>
-                                        <th class="wd-10p border-bottom-0"> التاريخ </th>
-
-
-
-
-
-
-                                    </tr>
-                                </thead>
-                                <tbody >
-                                    <tr>
-                                        <td>{{ $order->id }}</td>
-                                        <td>
-                                            @if ($order->invoiceType == 1)
-                                                اجل
-                                            @elseif($order->invoiceType == 2)
-                                                نقدي
-                                            @endif
-                                        </td>
-                                        <td>{{ $order->numberInvoice }}</td>
-                                        <td>
-                                            @if ($order->customerType == 1)
-                                                اشخاص
-                                            @elseif($order->customerType == 2)
-                                                شركات
-                                            @endif
-                                        </td>
-                                        <td>{{ $order->customerCodeInvoice }}</td>
-                                        <td>{{ $order->customerNameInvoice }}</td>
-                                        <td>{{ $order->CustomerPhoneNumberInvoice }}</td>
-                                        <td>{{ $order->user->name }}</td>
-                                        <td>{{ $order->discountBercentageInvoice }}</td>
-                                        <td>{{ $order->netInvoice }}</td>
-                                        <td>{{ $order->removeDecimal }}</td>
-                                        <td>{{ $order->created_at }}</td>
-
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end table-->
-        </div>
         <div class="row row-sm">
             <!--start table-->
             <div class="col-xl-12">
@@ -209,7 +121,7 @@
                                         <th class="wd-20p border-bottom-0 prt"> كود وحده الصنف </th>
                                         <th class="wd-15p border-bottom-0"> وحده الصنف </th>
                                         <th class="wd-10p border-bottom-0">الكميه </th>
-                                        <th class="wd-10p border-bottom-0 spac"> سعر بيع الوحده </th>
+
                                         <th class="wd-10p border-bottom-0"> ملاحظات </th>
 
 
@@ -218,16 +130,16 @@
                                     </tr>
                                 </thead>
                                 <tbody >
-                                    @foreach ($orderDetails as $orderDetail)
+                                    @foreach ($ReplaceOrderDetails as $replaceOrderDetail)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $orderDetail->item->itemProductCode }}</td>
-                                            <td class="spac">{{ $orderDetail->item->itemProductName }}</td>
-                                            <td >{{ $orderDetail->item->itemUnitProductCode }}</td>
-                                            <td>{{ $orderDetail->item->itemOnlyProduct }}</td>
-                                            <td>{{ $orderDetail->quantityInvoice }}</td>
-                                            <td>{{ $orderDetail->unitSaleBriceInvoice }}</td>
-                                            <td  class="spac">{{ $orderDetail->notesInvoice }}</td>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$replaceOrderDetail->item->itemProductCode}}</td>
+                                            <td class="spac">{{$replaceOrderDetail->item->itemProductName}}</td>
+                                            <td >{{ $replaceOrderDetail->item->itemUnitProductCode}}</td>
+                                            <td>{{ $replaceOrderDetail->item->itemOnlyProduct}}</td>
+                                            <td>{{$replaceOrderDetail->replaceQuantityInvoice}}</td>
+
+                                            <td  class="spac">{{$replaceOrderDetail->replaceNotesInvoice}}</td>
 
 
 
@@ -243,7 +155,7 @@
                             </table>
 
                             <a href="{{ url()->previous() }}" class=" btn btn-info no-print">الرجوع الى الخلف</a>
-                            <a href="{{ url('/invoice') }}" class=" btn btn-secondary no-print">الرجوع الى الفاتوره</a>
+                            <a href="{{ url('/replacementinvoice') }}" class=" btn btn-secondary no-print">الرجوع الى الفاتوره</a>
                             <button  type="button" class="btn btn-danger float-left m-3  no-print"
                             onclick="window.print()">
                             طباعه
@@ -306,4 +218,3 @@
 
 @section('script')
 @endsection
-
